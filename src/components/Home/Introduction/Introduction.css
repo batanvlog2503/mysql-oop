@@ -1,0 +1,72 @@
+
+
+.inner-introduce{
+    
+    border-bottom: 1px solid grey;
+    padding: 30px 15px;
+}
+.inner-introduce p{
+    color: grey;
+    font-size: 20px;
+    padding: 10px;
+
+}
+.introduce-left{
+    border-right: 1px solid grey;
+    padding-right: 0;
+}
+
+.inner-introduce h1{
+    color: white;
+    font-weight: 700;
+    padding: 10px;
+    font-size: 60px;
+}
+
+.inner-statistic{
+    padding: 30px;
+}
+
+.inner-statistic .row h1{
+    color:white;
+    
+}
+.inner-statistic .row p{
+    color: grey;
+}
+
+.inner-statistic-1, .inner-statistic-2{
+    border-right: 1px solid grey;
+}
+.introduction-section {
+    
+  border-bottom: 1px solid grey;
+  
+}
+
+.inner-tags{
+    padding: 20px;
+    
+
+}
+.inner-tags h1{
+    color: white;
+    padding: 20px;
+    background-color: orange;
+
+}
+
+.inner-tags ul li{
+    padding: 5px;
+    background-color:   grey;
+    border-radius: 25px;
+    margin: 5px;
+}
+.list-tags {
+  display: flex;
+  flex-wrap: wrap; /* Cho phép xuống dòng khi hết chỗ */
+  gap: 3px;        /* Khoảng cách giữa các tag */
+  list-style: none; /* Bỏ dấu chấm của <ul> */
+  padding: 0;
+  margin: 0;
+}

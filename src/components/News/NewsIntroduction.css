@@ -1,0 +1,15 @@
+
+
+.introduction-title{
+    padding: 50px;
+}
+
+.introduction-title h1{
+    color: white;
+    font-size: 60px;
+}
+
+.introduction-title p{
+    color: grey;
+    margin-top: 20px;
+}

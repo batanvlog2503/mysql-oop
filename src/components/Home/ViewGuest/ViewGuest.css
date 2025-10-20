@@ -1,0 +1,38 @@
+.guest-info img {
+    margin-top: 20px;
+  width: 20%;
+  height: auto;
+  aspect-ratio: 1 / 1; /* Giữ tỉ lệ vuông */
+  object-fit: cover; /* Cắt ảnh cho vừa khung */
+  border-radius: 50%; /* Làm tròn */
+}
+
+.guest-info h3 {
+  margin-top: 15px;
+  font-size: 25px;
+  color: white;
+}
+
+.guest-info span {
+  font-size: 20px;
+  color: grey;
+}
+
+.view-guest-right {
+    padding: 20px;
+  display: flex;
+  flex-direction: column;       /* sắp xếp theo cột */
+  justify-content: space-between; /* chia đều khoảng cách theo chiều dọc */
+  height: 100%;                   /* để flex hoạt động đủ không gian */
+  padding: 10px 20px;             /* thêm khoảng cách trong */
+}
+
+.view-guest-right .guest-info-date{
+    margin-top: 15px;
+    
+}
+
+.guest-info{
+    border-bottom: 1px solid grey;
+    padding: 25px;
+}

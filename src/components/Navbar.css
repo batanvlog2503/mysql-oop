@@ -1,0 +1,68 @@
+.nav-link {
+  font-size: 25px;
+  font-weight: bold;
+  padding: 30px;
+}
+
+.navbar {
+  width: 100%;
+}
+.container-fluid {
+  background-color: black;
+  margin: 0;
+  padding: 0;
+}
+
+ul {
+  display: flex;
+  padding: 35px;
+  align-items: center;
+  justify-content: space-around;
+  margin-bottom: 0;
+}
+
+ul li {
+  color: white;
+  font-weight: 500;
+}
+
+.list-page li {
+  font-size: 25px;
+  background-color: orange;
+  padding: 10px;
+  border-radius: 30px;
+}
+.list-page li:hover {
+  background-color: white;
+  color: orange;
+}
+
+.inner-contact button {
+  padding: 10px;
+  color: black;
+  background-color: orange;
+}
+
+.list-page button {
+  padding: 10px;
+  border-radius: 20px;
+  transition: background-color 0.25 ease;
+}
+.list-page button:hover {
+  background-color: black;
+  border: 1px solid white;
+  color: white;
+}
+
+.link-to-home,
+.link-to-news {
+  text-decoration: none;
+  color: white;
+}
+
+
+.link-to-home:hover,
+.link-to-news:hover {
+  background-color: white;
+  color: orange;
+}

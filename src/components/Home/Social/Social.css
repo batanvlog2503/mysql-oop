@@ -1,0 +1,27 @@
+
+.social-section{
+    padding: 30px;
+}
+
+.social-component{
+    padding: 25px;
+    
+
+}
+.social-component .social-icons{
+    font-size: 40px;
+    color: orange;
+    margin-bottom: 20px;
+
+}
+.social-component .social-title{
+    font-size: 25px;
+    color: white;
+
+}
+
+.social-component p{
+    font-size: 18px;
+    color: grey;
+
+}

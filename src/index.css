@@ -1,0 +1,13 @@
+html,
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  height: 100;
+  margin: 0;
+  padding: 0;
+  background-color: black;
+  color: white; /* để chữ không bị ẩn trên nền đen */
+}
+
+#root {
+  height: 100%;
+}

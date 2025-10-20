@@ -1,0 +1,33 @@
+.review-section {
+  background-color: rgb(33, 32, 32);
+}
+
+.inner-title-review {
+  padding: 40px;
+}
+
+.inner-title-review p {
+  background-color: rgb(84, 83, 83);
+  padding: 5px;
+  color: white;
+  margin-bottom: 10px; /* khoảng cách dưới p */
+}
+
+.inner-title-review h1 {
+  color: white;
+  margin-bottom: 20px; /* khoảng cách dưới h1 */
+}
+
+.inner-title-review button {
+  border-radius: 10px;
+  padding: 10px;
+  border: none;
+  outline: none;
+  background-color: rgb(11, 11, 11);
+  color: white;
+  margin-top: 10px; /* cách h1 một c
+  bỏ
+  hút */
+}
+
+
