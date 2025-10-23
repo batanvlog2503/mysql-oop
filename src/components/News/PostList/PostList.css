@@ -1,0 +1,93 @@
+.inner-wrap-list .inner-wrap {
+  border-bottom: 1px solid grey;
+}
+.inner-wrap-list .row {
+  padding: 20px;
+
+  margin: 20px;
+  border-radius: 20px;
+}
+.post-img {
+  padding: 30px;
+}
+
+.inner-wrap-list .row .post-img img {
+  width: 80%;
+  height: auto;
+  border-radius: 15px;
+}
+
+.post-title p {
+  padding: 0 !important;
+}
+.post-title h3 {
+  color: white;
+  margin-bottom: 20px;
+}
+.post-title p,
+span {
+  color: gray;
+  margin-left: 10px;
+}
+
+.post-social {
+  color: white;
+  margin: 15px 0;
+}
+.post-social span {
+  padding: 5px;
+  background-color: rgb(31, 29, 29);
+  color: white;
+  border-radius: 15px;
+  border: 1px solid rgb(56, 54, 54);
+  transition: background-color 0.5s ease;
+}
+
+.post-social span:nth-child(1):hover {
+  background-color: rgb(250, 85, 85);
+}
+
+.post-social span:nth-child(2):hover {
+  background-color: rgb(85, 169, 194);
+}
+.post-social span.active1 i {
+  color: rgb(250, 85, 85); /* đổi màu icon bên trong */
+}
+.post-social span.active2 i {
+  color: rgb(85, 169, 194); /* đổi màu icon bên trong */
+}
+
+.post-list {
+  max-height: 500px; /* chiều cao tối đa của khung */
+  overflow-y: auto; /* bật thanh cuộn dọc */
+  padding-right: 10px; /* tạo khoảng cách bên phải để không dính vào thanh cuộn */
+  scroll-behavior: smooth; /* cuộn mượt */
+}
+
+.post-list::-webkit-scrollbar {
+  width: 8px;
+}
+
+.post-list::-webkit-scrollbar-thumb {
+  background: rgb(90, 90, 90);
+  border-radius: 4px;
+}
+
+.post-list::-webkit-scrollbar-thumb:hover {
+  background: orange;
+}
+
+.post-read-more{
+    padding: 10px;
+    border-radius: 10px;
+    background-color: black;
+    border: 1px solid white;
+    color: white;
+    transition: background-color 0.5s ease;
+}
+
+.post-read-more:hover{
+    background-color: white;
+    color:orange;
+    border: 1px solid orange;
+}

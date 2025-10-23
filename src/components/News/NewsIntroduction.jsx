@@ -3,7 +3,7 @@ import Navbar from "../Navbar"
 import "../News/NewsIntroduction.css"
 const NewsIntroduction = () => {
   return (
-    <div className="container newsintroduction-section">
+    <div className="container-fluid newsintroduction-section">
       <div className="introduction-title">
         <h1>Blog's Today: Stay Informed</h1>
         <p>

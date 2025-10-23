@@ -17,7 +17,7 @@ const Navbar = () => {
             <ul className="list-page" style={{listStyle:"none"}}>
               <li><Link to={"/"} className="link-to-home link">Home</Link></li>
               <li><Link to={"/view-blogs"} className="link-to-news link">News</Link></li>
-              <button>Write <i class="fa-solid fa-pen"></i></button>
+              <button>Write <i className="fa-solid fa-pen"></i></button>
             </ul> 
           </div>
           <div className="inner-contact col-xl-4 col-lg-4 text-center d-flex justify-content-center align-items-center">

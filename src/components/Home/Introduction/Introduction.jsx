@@ -2,6 +2,7 @@ import React, { useEffect } from "react"
 import "../Introduction/Introduction.css"
 import { useState } from "react"
 import axios from "axios"
+import Tag from "../Tag/Tag"
 const Introduction = () => {
   const [tags, setTags] = useState([])
 
@@ -57,22 +58,7 @@ const Introduction = () => {
           </div>
         </div>
         <div className="col-lg-4 col-xl-4 col-sm-12 col-12">
-          <div className="inner-tags">
-            <h1>Tags</h1>
-
-            <ul className="list-tags">
-              {tags.map((tag, index) => (
-                <li key={tag.id}>{tag.name}</li>
-              ))}
-              {/* {tags.map((tag) => (
-                <li key={tag.id}>{tag.name}</li>
-              ))} */}
-              {/* <li>Programming Java</li>
-              <li>SpringBoot</li>
-              <li>MySQL</li>
-              <li>Tips Technology</li> */}
-            </ul>
-          </div>
+          <Tag></Tag>
         </div>
       </div>
     </div>

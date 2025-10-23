@@ -1,0 +1,28 @@
+.inner-tags {
+  padding: 20px;
+  background-color: rgb(55, 52, 52);
+  border-radius: 20px;
+  margin: 10px;
+  
+}
+.inner-tags h1 {
+  color: white;
+  padding: 20px;
+  background-color: orange;
+  border-radius: 20px;
+}
+
+.inner-tags ul li {
+  padding: 5px;
+  background-color: grey;
+  border-radius: 25px;
+  margin: 5px;
+}
+.list-tags {
+  display: flex;
+  flex-wrap: wrap; /* Cho phép xuống dòng khi hết chỗ */
+  gap: 3px; /* Khoảng cách giữa các tag */
+  list-style: none; /* Bỏ dấu chấm của <ul> */
+  padding: 0;
+  margin: 0;
+}

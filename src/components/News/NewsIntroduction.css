@@ -2,6 +2,7 @@
 
 .introduction-title{
     padding: 50px;
+    
 }
 
 .introduction-title h1{
@@ -13,3 +14,8 @@
     color: grey;
     margin-top: 20px;
 }
+
+.newsintroduction-section{
+    border-bottom: 1px solid grey;
+}
+

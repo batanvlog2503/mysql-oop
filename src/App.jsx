@@ -9,12 +9,14 @@ import Home from './components/Home/Home'
 import "./index.css"
 import ViewBlogs from './components/News/ViewBlogs'
 import MainLayout from './components/MainLayout'
-
+import PostDetailLayout from './components/News/PostDetail/PostDetailLayout'
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path='/' element={<MainLayout/>}>
       <Route index element={<Home />} />
-      <Route path="view-blogs" element={<ViewBlogs />} />
+      <Route path="view-blogs" element={<ViewBlogs />}>
+        <Route path = ":id" element = {<PostDetailLayout/>}></Route>
+      </Route>
     </Route>
   )
 )
