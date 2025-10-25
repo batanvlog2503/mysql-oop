@@ -1,0 +1,80 @@
+.inner-wrap-similar-blogs .title {
+  color: rgb(230, 224, 224);
+  padding: 15px;
+  margin-bottom: 30px;
+}
+/* .view-similar-blog{
+     border: 1px solid rgb(67, 67, 67);
+     border-radius: 15px;
+     
+} */
+.similar-blog-img img {
+  width: 100%;
+  height: auto;
+  border-radius: 20px;
+  transition: transform 0.4s ease;
+}
+
+.similar-blog-img:hover .img {
+  transform: scale(1.1); /* phóng to 10% khi hover */
+}
+.similar-blog-img {
+  margin-bottom: 25px;
+  overflow: hidden; /* ẩn phần ảnh bị tràn khi phóng to */
+  border-radius: 12px;
+}
+
+.similar-blog-title {
+  color: white;
+}
+.similar-blog-category {
+  color: grey;
+}
+
+.view-similar-blog {
+  padding: 30px;
+}
+
+.heart-and-message {
+  margin-top: 10px;
+}
+.heart-and-message span {
+  padding: 5px;
+  background-color: rgb(31, 29, 29);
+  color: white;
+  border-radius: 15px;
+  border: 1px solid rgb(56, 54, 54);
+  transition: background-color 0.5s ease;
+}
+
+.heart-and-message span:nth-child(1):hover {
+  background-color: rgb(250, 85, 85);
+}
+
+.heart-and-message span:nth-child(2):hover {
+  background-color: rgb(85, 169, 194);
+}
+
+.heart-and-message span.active1 i {
+  color: rgb(250, 85, 85);
+}
+
+.heart-and-message span.active2 i {
+  color: rgb(85, 169, 194);
+}
+
+.similar-blog-social button {
+  background-color: black;
+  border: 1px solid grey;
+
+  color: rgb(169, 167, 167);
+  padding: 8px;
+  border-radius: 15px;
+  transition: background-color 0.5s ease;
+}
+
+.similar-blog-social button:hover{
+    background-color: white;
+    color: orange;
+    border: 1px solid orange;
+}

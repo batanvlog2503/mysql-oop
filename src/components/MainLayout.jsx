@@ -6,10 +6,12 @@ import { Outlet } from "react-router-dom"
 
 const MainLayout = () => {
   return (
-    <div className="container-fluid">
-      <Navbar />
+    <div className="container-fluid main-layout">
+      <div className="sticky-top">
+        <Navbar />
+      </div>
       <Outlet></Outlet>
-      <Footer />
+      
     </div>
   )
 }

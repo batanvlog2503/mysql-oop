@@ -25,16 +25,48 @@ ul li {
   color: white;
   font-weight: 500;
 }
-
-.list-page li {
+/* 
+.list-page .link {
   font-size: 25px;
   background-color: orange;
   padding: 10px;
-  border-radius: 30px;
+  border-radius: 25px;
+  transition: background-color 0.5s ease;
 }
-.list-page li:hover {
+.list-page .link:hover {
   background-color: white;
   color: orange;
+} */
+.list-page .link {
+  position: relative;
+  font-size: 25px;
+
+  padding: 10px;
+  border-radius: 25px;
+  transition: background-color 0.5s ease;
+  text-decoration: none;
+}
+
+/* gạch chân ẩn ban đầu */
+.list-page .link::after {
+  content: "";
+  position: absolute;
+  bottom: 5px; /* cách mép dưới một chút */
+  left: 0;
+  width: 0;
+  height: 3px;
+  background-color: orange;
+  transition: width 0.3s ease;
+  border-radius: 2px;
+}
+
+/* hover hiện gạch chân */
+.list-page .link:hover {
+  color: orange;
+}
+
+.list-page .link:hover::after {
+  width: 100%;
 }
 
 .inner-contact button {
@@ -46,7 +78,7 @@ ul li {
 .list-page button {
   padding: 10px;
   border-radius: 20px;
-  transition: background-color 0.25 ease;
+  transition: background-color 0.5s ease;
 }
 .list-page button:hover {
   background-color: black;
@@ -60,9 +92,7 @@ ul li {
   color: white;
 }
 
-
 .link-to-home:hover,
 .link-to-news:hover {
-  background-color: white;
   color: orange;
 }

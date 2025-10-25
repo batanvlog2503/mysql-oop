@@ -10,12 +10,16 @@ import "./index.css"
 import ViewBlogs from './components/News/ViewBlogs'
 import MainLayout from './components/MainLayout'
 import PostDetailLayout from './components/News/PostDetail/PostDetailLayout'
+import PostDetail from './components/News/PostDetail/PostDetail'
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path='/' element={<MainLayout/>}>
       <Route index element={<Home />} />
       <Route path="view-blogs" element={<ViewBlogs />}>
-        <Route path = ":id" element = {<PostDetailLayout/>}></Route>
+        {/* <Route path = ":id" element = {<PostDetailLayout/>}></Route> */}
+      </Route>
+      <Route path="view-blogs/:id" element={<PostDetailLayout />}> 
+      <Route index element = {<PostDetail></PostDetail>} ></Route>
       </Route>
     </Route>
   )

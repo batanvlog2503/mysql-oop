@@ -8,11 +8,12 @@
   border-radius: 20px;
 }
 .post-img {
+ 
   padding: 30px;
 }
 
 .inner-wrap-list .row .post-img img {
-  width: 80%;
+  width: 100%;
   height: auto;
   border-radius: 15px;
 }
@@ -57,23 +58,23 @@ span {
   color: rgb(85, 169, 194); /* đổi màu icon bên trong */
 }
 
-.post-list {
-  max-height: 500px; /* chiều cao tối đa của khung */
+.inner-wrap-list {
+  max-height: 600px; /* chiều cao tối đa của khung */
   overflow-y: auto; /* bật thanh cuộn dọc */
   padding-right: 10px; /* tạo khoảng cách bên phải để không dính vào thanh cuộn */
   scroll-behavior: smooth; /* cuộn mượt */
 }
 
-.post-list::-webkit-scrollbar {
+.inner-wrap-list::-webkit-scrollbar {
   width: 8px;
 }
 
-.post-list::-webkit-scrollbar-thumb {
+.inner-wrap-list::-webkit-scrollbar-thumb {
   background: rgb(90, 90, 90);
   border-radius: 4px;
 }
 
-.post-list::-webkit-scrollbar-thumb:hover {
+.inner-wrap-list::-webkit-scrollbar-thumb:hover {
   background: orange;
 }
 

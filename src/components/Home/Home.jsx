@@ -16,6 +16,8 @@ const Home = () => {
       <ViewGuest></ViewGuest>
 
       <Outlet></Outlet>
+
+      <Footer />
     </div>
   )
 }

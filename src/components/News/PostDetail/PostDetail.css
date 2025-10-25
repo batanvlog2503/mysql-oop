@@ -1,0 +1,175 @@
+.inner-wrap-post-detail-title {
+  border-bottom: 1px solid grey;
+}
+.post-detail-img {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 30px;
+}
+.post-detail-img img {
+  width: 80%; /* ✅ nhỏ lại còn 80% chiều rộng cột */
+  height: auto;
+  max-height: 350px; /* ✅ hạn chế chiều cao */
+  object-fit: contain; /* ✅ không cắt ảnh */
+  border-radius: 30px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+
+.post-detail-title {
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.post-detail-title span {
+  padding: 15px;
+  margin: 5px;
+}
+.post-detail-title h1 {
+  padding: 15px;
+  color: white;
+  font-weight: 700;
+}
+
+.inner-wrap-post-details .row .post-detail-contents {
+  padding: 60px;
+}
+
+.inner-wrap-post-details .post-detail-contents h3 {
+  color: rgb(220, 220, 220);
+  margin: 25px 0px;
+}
+.inner-wrap-post-details .post-detail-contents p {
+  color: rgb(135, 133, 133);
+  margin: 25px 0px;
+}
+
+.post-detail-introduction,
+.post-detail-content,
+.post-detail-end-content {
+  border-bottom: 1px solid grey;
+}
+.post-detail-contents {
+  border-right: 1px solid grey;
+}
+
+.post-detail-table-content {
+  padding: 0;
+}
+.post-detail-table-content-social {
+  border-bottom: 1px solid grey;
+  padding: 30px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+
+.post-detail-table-content-social span {
+  padding: 10px;
+  color: rgb(146, 144, 144);
+  background-color: black;
+  border-radius: 30px;
+  border: 1px solid grey;
+  transition: background-color 0.5s ease;
+}
+
+.post-detail-table-content-social span:nth-child(1):hover {
+  background-color: rgb(250, 85, 85);
+  color: white;
+  border: 1px solid white;
+}
+
+.post-detail-table-content-social .active1 i {
+  color: rgb(250, 85, 85);
+}
+
+.post-detail-table-content-social span.active1 {
+  color: white;
+}
+
+.post-detail-table-content-social span:nth-child(3):hover {
+  background-color: rgb(85, 169, 194);
+  color: white;
+  border: 1px solid white;
+}
+
+.post-detail-table-content-social .active3 i {
+  color: rgb(85, 169, 194);
+}
+
+.post-detail-table-content-social span.active3 {
+  color: white;
+}
+
+.post-detail-table-content-social span:nth-child(2):hover {
+  background-color: orange;
+  color: white;
+  border: 1px solid white;
+}
+
+.post-detail-table-content-social .active2 i {
+  color: orange
+}
+
+.post-detail-table-content-social span.active2 {
+  color: white;
+}
+
+
+.post-detail-info .row{
+  padding: 25px;
+}
+
+.info-component {
+  padding: 0;
+  text-align: center;
+  padding: 12px;
+}
+
+.info-component h5{
+  color: orange
+}
+.info-component span{
+  color: white;
+}
+.post-detail-info{
+  border-bottom: 1px solid grey;
+
+}
+
+
+.post-detail-table-of-contents{
+  padding: 20px;
+}
+.post-detail-table-of-contents .title{
+
+  padding: 15px;
+  color: grey;
+}
+
+
+.post-detail-table-list {
+  padding: 15px;
+  background-color: rgb(22, 22, 22);
+  margin: 0 25px;
+  border-radius: 15px;
+}
+.post-detail-table-list ul li{
+  color: rgb(210, 205, 205);
+  margin: 5px 0;
+  
+}
+
+
+.post-detail-table-of-contents{
+  border-bottom: 1px solid grey;
+}
+
+
+.post-detail-table-content {
+  position: sticky;
+  top: 130px; /* 👈 khoảng cách từ trên xuống khi bắt đầu cố định */
+  align-self: flex-start;
+}
