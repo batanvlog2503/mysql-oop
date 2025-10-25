@@ -11,6 +11,7 @@ const PostDetailLayout = () => {
     <div>
       
       <div className="container-fluid post-detail-layout-section">
+        <Navbar></Navbar>
         <PostDetail></PostDetail>
         <SimilarBlog></SimilarBlog>
         <Footer></Footer>

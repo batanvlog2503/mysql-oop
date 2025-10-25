@@ -70,11 +70,18 @@ ul li {
 }
 
 .inner-contact button {
-  padding: 10px;
+  display: inline-block;
+  padding: 20px;
   color: black;
   background-color: orange;
+  border-radius: 25px;
+  transition: background-color 0.6s ease-in-out;
 }
-
+.inner-contact button:hover {
+  background-color: white;
+  color: orange;
+  border: 1px solid orange;
+}
 .list-page button {
   padding: 10px;
   border-radius: 20px;

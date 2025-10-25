@@ -11,6 +11,7 @@ import Footer from "../Home/Footer/Footer.jsx"
 const ViewBlogs = () => {
   return (
     <div>
+      <Navbar></Navbar>
       <NewsIntroduction></NewsIntroduction>
       {/* <PostCard></PostCard> */}
       <div

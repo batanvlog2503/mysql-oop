@@ -9,13 +9,12 @@ import { Outlet } from "react-router-dom"
 const Home = () => {
   return (
     <div className="container-fluid">
+      <Navbar></Navbar>
       <Introduction />
 
       <Social></Social>
       <Review></Review>
       <ViewGuest></ViewGuest>
-
-      <Outlet></Outlet>
 
       <Footer />
     </div>

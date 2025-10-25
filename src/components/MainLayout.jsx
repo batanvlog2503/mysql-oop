@@ -8,9 +8,10 @@ const MainLayout = () => {
   return (
     <div className="container-fluid main-layout">
       <div className="sticky-top">
-        <Navbar />
+        
+        <Outlet></Outlet>
       </div>
-      <Outlet></Outlet>
+      
       
     </div>
   )

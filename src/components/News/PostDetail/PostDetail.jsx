@@ -49,9 +49,9 @@ const PostDetail = () => {
   }
   return (
     <div className="container-fluid post-detail-section">
-      <div className="inner-wrap-post-detail-title"> // phần 1
+      <div className="inner-wrap-post-detail-title"> 
         <div className="row row-1">
-          <div className="post-detail-title col-lg-6 col-xl-6 col-sm-12 col-12">
+          <div className="post-detail-title col-lg-8 col-xl-8 col-sm-12 col-12">
             <span>
               Written by: {posts.authorUser?.displayName || "Unknown Author"} |
               Update on:{" "}
@@ -59,7 +59,7 @@ const PostDetail = () => {
             </span>
             <h1>{posts.title}</h1>
           </div>
-          <div className="post-detail-img col-lg-6 col-xl-6 col-sm-12 col-12">
+          <div className="post-detail-img col-lg-4 col-xl-4 col-sm-12 col-12">
             <img
               src={postDetails.postImg}
               alt={postDetails.postImg}
