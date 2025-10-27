@@ -12,11 +12,16 @@ import MainLayout from './components/MainLayout'
 import PostDetailLayout from './components/News/PostDetail/PostDetailLayout'
 import PostDetail from './components/News/PostDetail/PostDetail'
 import Login from './components/Login/Login'
+import SignUp from './components/Login/SignUp/SignUp'
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path='/' element={<MainLayout/>}>
-      <Route index element = {<Login/>  }></Route>
+      <Route index element = {<Login/>  }>
+      
+      </Route>
+      <Route path="signup" element={<SignUp/>}></Route>
       <Route path="home" element={<Home />} />
+      
       <Route path="view-blogs" element={<ViewBlogs />}>
         {/* <Route path = ":id" element = {<PostDetailLayout/>}></Route> */}
       </Route>

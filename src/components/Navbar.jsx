@@ -1,8 +1,16 @@
 import React from "react"
-import { Link, NavLink } from "react-router-dom"
+import { Link, NavLink, useNavigate } from "react-router-dom"
 import "../components/Navbar.css"
-
+import { UserContext } from "./UserContext"
+import { useContext } from "react"
 const Navbar = () => {
+  const {user, setUser} = useContext(UserContext);
+
+const navigate = useNavigate();
+  const handleLogout = () => {
+    setUser(null);
+    navigate("/");
+  }
   return (
     <div className="navbar navbar-expand-lg" style={{backgroundColor:"black", minHeight:"10vh" ,borderBottom: "1px solid grey"}}>
       <div className="container-fluid header">
@@ -21,7 +29,10 @@ const Navbar = () => {
             </ul> 
           </div>
           <div className="inner-contact col-xl-4 col-lg-4 text-center d-flex justify-content-center align-items-center">
-            <button className="btn btn-contact">Contact Us</button>
+            <div>
+              <h5 className="inner-display-name">Chào Bạn! {user?.displayName}</h5>
+            </div>
+            <button className="log-out" onClick={handleLogout}>Log Out</button>
           </div>
         </div>
       </div>

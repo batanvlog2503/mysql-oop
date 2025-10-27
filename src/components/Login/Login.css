@@ -43,8 +43,7 @@
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3); /* thêm đổ bóng cho nổi bật */
 }
 
-
-.form-control {
+.wrapper .form-login .form-control {
   flex: 1; /* giữ input chiếm hết phần còn lại */
   min-width: 250px; /* giới hạn nhỏ nhất khi co màn hình */
   font-size: 16px;
@@ -52,15 +51,14 @@
 
 /* Icon label */
 
-.input-group input::placeholder {
-  color: white;
+.wrapper .form-login .input-group input::placeholder {
   font-weight: 450;
 }
-.input-group label {
+.wrapper .form-login .input-group label {
   padding: 15px;
   border: none;
 }
-.input-group input {
+.wrapper .form-login .input-group input {
   color: white;
   font-weight: 500;
   background-color: transparent;
@@ -70,7 +68,6 @@
 .input-group input:focus {
   color: white;
   font-weight: 500;
- 
 }
 .form-login .input-group {
   width: 100%;
@@ -107,17 +104,18 @@
   font-weight: 300;
 }
 
-.register-link a {
+.register-link button {
   font-size: 20px;
   font-weight: 600;
   text-decoration: none;
   color: white;
+  background-color: transparent;
 }
 
-.button-submit{
+.button-submit {
   margin: 25px 0;
 }
-.form-control {
+.wrapper .form-login .form-control {
   background-color: rgba(255, 255, 255, 0.05); /* nền hơi trong suốt nhẹ */
 
   border: 1px solid rgba(255, 255, 255, 0.3);
@@ -127,7 +125,7 @@
 }
 
 /* Hiệu ứng khi focus vào input */
-.form-control:focus {
+.wrapper .form-login .form-control:focus {
   background-color: rgba(255, 255, 255, 0.08); /* sáng hơn 1 chút khi focus */
   border-color: rgba(0, 255, 255, 0.8); /* màu viền xanh lam nhạt */
   box-shadow: 0 0 10px rgba(0, 255, 255, 0.6); /* ánh sáng tỏa ra ngoài */
@@ -135,6 +133,6 @@
 }
 
 /* Màu placeholder */
-.form-control::placeholder {
+.wrapper .form-login .form-control::placeholder {
   color: rgba(255, 255, 255, 0.6);
 }

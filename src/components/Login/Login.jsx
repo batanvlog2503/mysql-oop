@@ -1,22 +1,60 @@
-import React from "react"
+import React, { useContext } from "react"
 import "./Login.css"
 import { Outlet, useNavigate, useParams } from "react-router-dom"
 import NavbarLogin from "./NavbarLogin"
 import { useState, useEffect } from "react"
+import axios from "axios"
+import { UserContext } from "../UserContext"
+
 const Login = () => {
   const navigate = useNavigate()
   const [users, setUsers] = useState({
     username: "",
     password: "",
-    email: "",
-    displayName: "",
   })
+  const { user, setUser } = useContext(UserContext)
+  useEffect(() => {
+    // Khi người dùng mở lại trang Login, reset form
+    setUsers({ username: "", password: "" })
+    //setError("");
+  }, [])
 
   const handleInputChange = (e) => {
     setUsers({ ...users, [e.target.name]: e.target.value })
     // ví name = "firstName" = > firstName:"Jhon"
   }
-  const { username, password, email, displayName } = users
+
+  const handleSubmit = async (e) => {
+    e.preventDefault() // ngăn chặn trước khi submit
+    try {
+      const result = await axios.get("http://localhost:8080/api/users", {
+        validateStatus: () => {
+          return true
+        },
+      })
+
+      if (result.status === 200) {
+        console.log("Users Load Succesfully")
+      }
+      const data = result.data
+
+      const foundUser = data.find(
+        (u) => u.username === username && u.password === password
+      )
+
+      if (foundUser) {
+        alert("Login Successfully")
+        console.log("Login Successfully")
+        setUser(foundUser)
+        setUsers({ username: "", password: "" })
+        navigate(`/home`)
+      }
+    } catch (error) {
+      console.log("Error Fetching User, ", error)
+    }
+  }
+
+  const { username, password } = users
   return (
     <div className="container-fluid login">
       {/* <NavbarLogin></NavbarLogin> */}
@@ -34,6 +72,7 @@ const Login = () => {
           <form
             action=""
             className="input-group mb-5"
+            onSubmit={(e) => handleSubmit(e)}
           >
             <div className="input-group mb-3">
               <label
@@ -44,7 +83,7 @@ const Login = () => {
               </label>
               <input
                 type="text"
-                className="form-control col-sm- "
+                className="form-control"
                 name="username"
                 id="username"
                 placeholder="username"
@@ -53,6 +92,7 @@ const Login = () => {
                 value={username}
                 onChange={(e) => handleInputChange(e)}
                 required
+                autoComplete="new-password"
               />
             </div>
 
@@ -74,6 +114,7 @@ const Login = () => {
                 value={password}
                 onChange={(e) => handleInputChange(e)}
                 required
+                autoComplete="new-password"
               />
             </div>
             {/* <div class="input-group mb-3">
@@ -95,8 +136,8 @@ const Login = () => {
                 onChange={(e) => handleInputChange(e)}
                 required
               />
-            </div>
-            <div class="input-group mb-3">
+            </div> */}
+            {/* <div class="input-group mb-3">
               <label
                 htmlFor="displayName"
                 className="input-group-text"
@@ -126,7 +167,12 @@ const Login = () => {
             </div>
             <div className="register-link d-flex flex-row justify-content-between align-items-center w-100">
               <p className="mb-0">Don't have an account?</p>
-              <a href="#">Register</a>
+              <button
+                type="button"
+                onClick={() => navigate("/signup")}
+              >
+                Register
+              </button>
             </div>
           </form>
         </div>

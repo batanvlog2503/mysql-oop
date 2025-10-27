@@ -2,7 +2,7 @@
 
 import React from 'react'
 import { Link } from 'react-router-dom'
-import "./NavbarLogin.css"
+// import "./NavbarLogin.css"
 const NavbarLogin = () => {
   return (
     <div className="navbar navbar-expand-lg" style={{backgroundColor:"black", minHeight:"10vh" ,borderBottom: "1px solid grey"}}>

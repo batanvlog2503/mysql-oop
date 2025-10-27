@@ -71,11 +71,12 @@ ul li {
 
 .inner-contact button {
   display: inline-block;
-  padding: 20px;
+  padding: 10px;
   color: black;
   background-color: orange;
   border-radius: 25px;
   transition: background-color 0.6s ease-in-out;
+  margin:20px
 }
 .inner-contact button:hover {
   background-color: white;
@@ -103,3 +104,15 @@ ul li {
 .link-to-news:hover {
   color: orange;
 }
+
+
+.navbar .inner-contact .inner-display-name{
+  color: orange;
+  padding: 10px 0;
+}
+
+.navbar .inner-contact .inner-display-name h5{
+  position: absolute;
+  top: 15;
+}
+
