@@ -10,7 +10,7 @@ const Tag = () => {
     loadTags()
   }, [])
   const loadTags = async () => {
-    const result = await axios.get("http://localhost:8080/api/tags", {
+    const result = await axios.get("http://localhost:8081/api/tags", {
       validateStatus: () => {
         return true
       },
@@ -18,7 +18,8 @@ const Tag = () => {
     if (result.status === 200) {
       setTags(result.data) // set data;
     } else {
-      alert("Tags data connected Failed")
+      //alert("Tags data connected Failed") nhớ cho vào nhé
+      console.log("Tag Failed")
     }
   }
   return (

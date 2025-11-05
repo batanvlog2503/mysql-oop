@@ -37,14 +37,24 @@ const PostList = () => {
     loadPosts()
   }, [])
   const loadPosts = async () => {
-    const result = await axios.get("http://localhost:8080/api/posts", {
+    // const token = localStorage.getItem("jwtToken")
+    const result = await axios.get("http://localhost:8081/posts", {
+      
       validateStatus: () => {
         return true
       },
     })
+
+    console.log(localStorage.getItem("jwtToken"))
+    // const result = await axios.get("http://localhost:8081/api/posts", {
+    //   validateStatus: () => {
+    //     return true
+    //   },
+    // })
     if (result.status === 200) {
       setPosts(result.data)
       console.log(posts)
+      console.log("Post Load Successfully")
     } else {
       alert("Result failed")
     }
@@ -75,7 +85,7 @@ const PostList = () => {
                 <div className="post-title col-xl-8 col-lg-8 col-sm-12 col-12">
                   <h3>{post.title}</h3>
                   <p>
-                    {post.authorUser.displayName} |
+                    {post.authorName} |
                     {new Date(post.publishedAt).toLocaleDateString("vi-VN")} |{" "}
                     {post.viewCount} Lượt xem
                   </p>
@@ -96,7 +106,10 @@ const PostList = () => {
                       </span>
                     </div>
 
-                    <button className="post-read-more" onClick={() => navigate(`/view-blogs/${post.id}`)}>
+                    <button
+                      className="post-read-more"
+                      onClick={() => navigate(`/view-blogs/${post.id}`)}
+                    >
                       {/* <Link to={`/view-blogs/${post.id}`}></Link>Read more */}
                       Read More
                     </button>

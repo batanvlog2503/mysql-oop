@@ -13,6 +13,7 @@ import PostDetailLayout from './components/News/PostDetail/PostDetailLayout'
 import PostDetail from './components/News/PostDetail/PostDetail'
 import Login from './components/Login/Login'
 import SignUp from './components/Login/SignUp/SignUp'
+import WriteBlog from './components/WriteBlog/WriteBlog'
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path='/' element={<MainLayout/>}>
@@ -26,8 +27,9 @@ const router = createBrowserRouter(
         {/* <Route path = ":id" element = {<PostDetailLayout/>}></Route> */}
       </Route>
       <Route path="view-blogs/:id" element={<PostDetailLayout />}> 
-      <Route index element = {<PostDetail></PostDetail>} ></Route>
+      <Route index element = {<PostDetail></PostDetail>} ></Route> 
       </Route>
+      <Route path="write-blog" element = {<WriteBlog/>}></Route>
     </Route>
   )
 )

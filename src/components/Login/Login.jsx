@@ -13,10 +13,22 @@ const Login = () => {
     password: "",
   })
   const { user, setUser } = useContext(UserContext)
+
   useEffect(() => {
     // Khi người dùng mở lại trang Login, reset form
     setUsers({ username: "", password: "" })
-    //setError("");
+  }, [])
+  useEffect(() => {
+    //  Chặn người dùng quay lại trang trước khi login
+    window.history.pushState(null, "", window.location.href)
+    const handleBack = () => {
+      window.history.pushState(null, "", window.location.href)
+    }
+    window.addEventListener("popstate", handleBack)
+
+    return () => {
+      window.removeEventListener("popstate", handleBack)
+    }
   }, [])
 
   const handleInputChange = (e) => {
@@ -25,32 +37,72 @@ const Login = () => {
   }
 
   const handleSubmit = async (e) => {
-    e.preventDefault() // ngăn chặn trước khi submit
+    // e.preventDefault() // ngăn chặn trước khi submit
+    // try {
+    //   const result = await axios.get("http://localhost:8080/api/users", {
+    //     validateStatus: () => {
+    //       return true
+    //     },
+    //   })
+
+    //   if (result.status === 200) {
+    //     console.log("Users Load Succesfully")
+    //   }
+    //   const data = result.data
+
+    //   const foundUser = data.find(
+    //     (u) => u.username === username && u.password === password
+    //   )
+
+    //   if (foundUser) {
+    //     alert("Login Successfully")
+    //     console.log("Login Successfully")
+    //     setUser(foundUser)
+    //     setUsers({ username: "", password: "" })
+    //     navigate(`/home`)
+    //   }
+    // } catch (error) {
+    //   console.log("Error Fetching User, ", error)
+    // }
+    e.preventDefault()
+
     try {
-      const result = await axios.get("http://localhost:8080/api/users", {
-        validateStatus: () => {
-          return true
-        },
-      })
-
-      if (result.status === 200) {
-        console.log("Users Load Succesfully")
+      const loginData = {
+        username: users.username,
+        password: users.password,
       }
-      const data = result.data
 
-      const foundUser = data.find(
-        (u) => u.username === username && u.password === password
+      // Gọi API login tới backend
+      const response = await axios.post(
+        "http://localhost:8081/api/auth/login",
+        loginData
       )
 
-      if (foundUser) {
-        alert("Login Successfully")
-        console.log("Login Successfully")
-        setUser(foundUser)
+      if (response.status === 200) {
+        const token = response.data.token // backend trả về AuthResponse(token)
+
+        //  Lưu token vào localStorage để dùng cho các request sau
+        localStorage.setItem("jwtToken", token)
+
+        console.log("JWT Token:", token)
+
+        // Nếu có context user, set lại user
+        setUser({ username: users.username, password: users.password })
+
+        // Reset form
         setUsers({ username: "", password: "" })
-        navigate(`/home`)
+
+        // Điều hướng sang Home
+        navigate("/home", { replace: true })
+        alert("Login Successfully")
       }
     } catch (error) {
-      console.log("Error Fetching User, ", error)
+      console.error("Login failed:", error)
+      if (error.response && error.response.status === 401) {
+        alert("Invalid username or password!")
+      } else {
+        alert("Login failed. Please try again.")
+      }
     }
   }
 
@@ -79,7 +131,7 @@ const Login = () => {
                 htmlFor="username"
                 className="input-group-text"
               >
-                <i class="fa-solid fa-user"></i>
+                <i className="fa-solid fa-user"></i>
               </label>
               <input
                 type="text"
@@ -96,7 +148,7 @@ const Login = () => {
               />
             </div>
 
-            <div class="input-group mb-3">
+            <div className="input-group mb-3">
               <label
                 htmlFor="password"
                 className="input-group-text"

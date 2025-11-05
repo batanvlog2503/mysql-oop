@@ -116,3 +116,21 @@ ul li {
   top: 15;
 }
 
+
+
+.write-blog{
+  font-size: 25px;
+  font-weight: 600;
+  color: white;
+  text-decoration: none;
+  padding: 10px;
+
+
+  transition: background-color 0.5s ease;
+}
+
+
+/* .write-blog:hover{
+  background-color: white;
+  color: orange;
+} */

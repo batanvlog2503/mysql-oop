@@ -25,17 +25,25 @@ const SignUp = () => {
 
     const userToSave = { ...users, createdAt: now }
 
-    await axios.post("http://localhost:8080/api/users", userToSave)
-    // Option 1: Reset form
-    setUsers({
-      username: "",
-      password: "",
-      email: "",
-      displayName: "",
-      createdAt: "",
-    })
-    console.log("Sign Up Successfully")
-    alert("Sign UpSuccessfully")
+    try {
+      await axios.post("http://localhost:8081/api/auth/register", userToSave)
+      // Option 1: Reset form
+      setUsers({
+        username: "",
+        password: "",
+        email: "",
+        displayName: "",
+        createdAt: "",
+      })
+      console.log("Sign Up Successfully")
+      alert("Sign UpSuccessfully")
+    } catch (error) {
+      if (error.response && error.response.status === 400) {
+        alert(error.response.data || "Username already exists")
+      } else {
+        alert("Failed to register. Please try again.")
+      }
+    }
     // } catch (error) {
     //   console.error("Save failed", error)
     //   alert("Failed to save user. Please try again.")
@@ -70,7 +78,7 @@ const SignUp = () => {
               </label>
               <input
                 type="text"
-                className="form-control col-sm- "
+                className="form-control "
                 name="username"
                 id="username"
                 placeholder="username"
