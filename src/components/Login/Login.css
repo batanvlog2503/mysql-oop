@@ -30,7 +30,7 @@
 }
 
 /* Vùng bọc form */
-.form-login {
+.wrapper .form-login {
   border-radius: 30px;
   border: 2px solid rgba(255, 255, 255, 0.2);
   backdrop-filter: blur(20px);

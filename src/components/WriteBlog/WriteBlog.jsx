@@ -6,6 +6,7 @@ import axios from "axios"
 // import NavbarLogin from "./NavbarLogin"
 import { useState, useEffect } from "react"
 const WriteBlog = () => {
+  const [tagNameList, setTagNameList] = useState([])
   const [blog, setBlog] = useState({
     title: "",
     content: "",
@@ -17,6 +18,7 @@ const WriteBlog = () => {
     endContent: "",
     img: "",
     link: "",
+    categoryName: "",
   })
   const {
     title,
@@ -29,6 +31,7 @@ const WriteBlog = () => {
     endContent,
     img,
     link,
+    categoryName,
   } = blog
   const handleInputChange = (e) => {
     const { name, value } = e.target
@@ -42,15 +45,19 @@ const WriteBlog = () => {
     e.preventDefault()
     try {
       const token = localStorage.getItem("jwtToken")
-      await axios.post("http://localhost:8081/post/create", blog, {
+      const loadBlog = {
+      ...blog,
+      tagNameList: tagNameList, // thêm mảng tags vào
+    }
+      await axios.post("http://localhost:8081/post/create",loadBlog, {
         headers: {
           "Content-Type": "application/json",
           Authorization: `Bearer ${token}`,
         },
       })
-      alert("✅ Post Created Successfully")
+      alert(" Post Created Successfully")
     } catch (error) {
-      alert("❌ Post Failed")
+      alert(" Post Failed")
       console.error("Error:", error)
     }
   }
@@ -126,18 +133,37 @@ const WriteBlog = () => {
                   htmlFor="excerpt"
                   className="input-group-text"
                 >
-                  Summary :
+                  Excerpt
                 </label>
                 <textarea
                   className="form-control"
                   name="excerpt"
                   id="excerpt"
-                  placeholder="Enter a short summary"
+                  placeholder="Enter a short Exceprt"
                   aria-label="excerpt"
                   value={excerpt}
                   onChange={(e) => handleInputChange(e)}
                   required
                   rows={3} // hiển thị cao hơn input thường
+                />
+              </div>
+              <div className="input-group mb-3 category-blog">
+                <label
+                  htmlFor="categoryName"
+                  className="input-group-text"
+                >
+                  Category Name:
+                </label>
+                <textarea
+                  className="form-control"
+                  name="categoryName"
+                  id="categoryName"
+                  placeholder="Enter a Category Name"
+                  aria-label="categoryName"
+                  value={categoryName}
+                  onChange={(e) => handleInputChange(e)}
+                  required
+                  rows={1} // hiển thị cao hơn input thường
                 />
               </div>
               <div className="input-group mb-3 slug-blog">
@@ -161,7 +187,31 @@ const WriteBlog = () => {
                   autoComplete="new-password"
                 />
               </div>
-
+              <div className="input-group mb-3 tag-name-list-blog">
+                <label
+                  htmlFor="tagNameList"
+                  className="input-group-text"
+                >
+                  Tags:
+                </label>
+                <input
+                  type="text"
+                  className="form-control"
+                  name ="tagNameList"
+                  id="tagNameList"
+                  placeholder="Enter tags (press Enter to add)"
+                  onKeyDown={(e) => {
+                    if (e.key === "Enter") {
+                      e.preventDefault()
+                      const newTag = e.target.value.trim()
+                      if (newTag && !tagNameList.includes(newTag)) {
+                        setTagNameList([...tagNameList, newTag])
+                      }
+                      e.target.value = ""
+                    }
+                  }}
+                />
+              </div>
               <div className="input-group mb-3 status-blog">
                 <label
                   htmlFor="status"
@@ -182,6 +232,7 @@ const WriteBlog = () => {
                   <option value="archived">Archived</option>
                 </select>
               </div>
+
               <div className="input-group mb-3 introduction-blog">
                 <label
                   htmlFor="introduction" // giới thiệu đầu bài

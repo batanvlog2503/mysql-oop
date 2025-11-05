@@ -27,7 +27,7 @@
   gap: 20px;
 }
 
-.input-group-text {
+.write-blog-detail .input-group-text {
   width: 150px;
   font-weight: 600;
   background-color: #f8fafc;
@@ -35,20 +35,20 @@
   border: 1px solid #cbd5e1;
 }
 
-.form-control,
+.write-blog-detail .form-control,
 .form-select {
   border: 1px solid #cbd5e1;
   border-radius: 8px !important;
   transition: all 0.2s ease;
 }
 
-.form-control:focus,
+.write-blog-detail .form-control:focus,
 .form-select:focus {
   border-color: #dc6424;
   box-shadow: 0 0 0 0.2rem rgba(233, 107, 24, 0.25);
 }
 
-textarea.form-control {
+.write-blog-detail textarea.form-control {
   resize: vertical;
   font-size: 15px;
 }
