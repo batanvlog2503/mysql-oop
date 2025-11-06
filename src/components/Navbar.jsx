@@ -22,7 +22,7 @@ const Navbar = () => {
     >
       <div className="container-fluid header">
         <div className="row w-100">
-          <div className="inner-title nav-link col-xl-4 col-lg-4">
+          <div className="inner-title nav-link col-xl-3 col-lg-3">
             <Link
               to="/"
               style={{ textDecoration: "none" }}
@@ -31,7 +31,7 @@ const Navbar = () => {
               <i style={{ color: "orange" }}>BLOG</i>
             </Link>
           </div>
-          <div className="inner-page col-xl-4 col-lg-4">
+          <div className="inner-page col-xl-6 col-lg-6">
             <ul
               className="list-page"
               style={{ listStyle: "none" }}
@@ -53,11 +53,26 @@ const Navbar = () => {
                 </Link>
               </li>
               <li>
-               <Link className="link-to-write-blog write-blog link" to = {"/write-blog"}> Write <i className="fa-solid fa-pen"></i></Link>
+                <Link
+                  className="link-to-my-blog my-blog link"
+                  to={"/my-blog"}
+                >
+                  {" "}
+                  My Blog
+                </Link> 
+              </li>
+              <li>
+                <Link
+                  className="link-to-write-blog write-blog link"
+                  to={"/write-blog"}
+                >
+                  {" "}
+                  Write <i className="fa-solid fa-pen"></i>
+                </Link>
               </li>
             </ul>
           </div>
-          <div className="inner-contact col-xl-4 col-lg-4 text-center d-flex justify-content-center align-items-center">
+          <div className="inner-contact col-xl-3 col-lg-3 text-center d-flex justify-content-center align-items-center">
             <div>
               <h5 className="inner-display-name">Chào Bạn! {user.username}</h5>
             </div>

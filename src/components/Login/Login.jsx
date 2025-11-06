@@ -83,9 +83,9 @@ const Login = () => {
 
         //  Lưu token vào localStorage để dùng cho các request sau
         localStorage.setItem("jwtToken", token)
-
+        //localStorage.setItem("username", loginData.username)
         console.log("JWT Token:", token)
-
+        console.log("Login response:", response.data)
         // Nếu có context user, set lại user
         setUser({ username: users.username, password: users.password })
 

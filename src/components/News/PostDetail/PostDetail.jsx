@@ -89,8 +89,7 @@ const PostDetail = () => {
         <div className="row row-1">
           <div className="post-detail-title col-lg-8 col-xl-8 col-sm-12 col-12">
             <span>
-              Written by: {posts.authorName || "Unknown Author"} |
-              Update on:{" "}
+              Written by: {posts.authorName || "Unknown Author"} | Update on:{" "}
               {new Date(posts.publishedAt).toLocaleDateString("vi-VN")}
             </span>
             <h1>{posts.title}</h1>
@@ -183,15 +182,13 @@ const PostDetail = () => {
                 </div>
 
                 <div className="info-component col-xl-6 col-lg-6 col-md-12 col-12">
-                  <h5>Status</h5>
-                  <span>{posts.status}</span>
+                  <h5>Slug</h5>
+                  <span>{posts.slug}</span>
                 </div>
 
                 <div className="info-component col-xl-6 col-lg-6 col-md-12 col-12">
                   <h5>Author Name</h5>
-                  <span>
-                    {posts.authorName || "Unknown Author"}
-                  </span>
+                  <span>{posts.authorName || "Unknown Author"}</span>
                 </div>
               </div>
             </div>

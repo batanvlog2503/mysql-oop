@@ -14,6 +14,7 @@ import PostDetail from './components/News/PostDetail/PostDetail'
 import Login from './components/Login/Login'
 import SignUp from './components/Login/SignUp/SignUp'
 import WriteBlog from './components/WriteBlog/WriteBlog'
+import MyBlog from './components/News/MyBlog/MyBlog'
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path='/' element={<MainLayout/>}>
@@ -30,6 +31,7 @@ const router = createBrowserRouter(
       <Route index element = {<PostDetail></PostDetail>} ></Route> 
       </Route>
       <Route path="write-blog" element = {<WriteBlog/>}></Route>
+      <Route path="my-blog" element = {<MyBlog/>}></Route>
     </Route>
   )
 )
