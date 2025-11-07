@@ -1,28 +1,42 @@
 .inner-tags {
-  padding: 20px;
-  background-color: rgb(19, 17, 17);
-  border-radius: 20px;
-  margin: 10px;
-  
-}
-.inner-tags h1 {
-  color: white;
-  padding: 15px;
-  background-color: orange;
-  border-radius: 20px;
+  margin: 30px 0;
+  text-align: center;
 }
 
-.inner-tags ul li {
-  padding: 5px;
-  background-color: rgb(71, 71, 71);
-  border-radius: 15px;
-  margin: 5px;
-}
 .list-tags {
-  display: flex;
-  flex-wrap: wrap; /* Cho phép xuống dòng khi hết chỗ */
-  gap: 3px; /* Khoảng cách giữa các tag */
-  list-style: none; /* Bỏ dấu chấm của <ul> */
+  list-style: none;
   padding: 0;
-  margin: 0;
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+}
+
+/* Tag dạng chip */
+.list-tags li {
+  background-color: #f2f2f2;
+  color: #333;
+  padding: 8px 16px;
+  border-radius: 25px;
+  font-size: 15px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border: 1px solid transparent;
+}
+
+/* Hover đổi màu */
+.list-tags li:hover {
+  background-color: orange;
+  color: white;
+  border-color: orange;
+  transform: scale(1.05);
+}
+
+/* Khi tag đang được chọn */
+.list-tags li.active {
+  background-color: darkorange;
+  color: white;
+  border-color: darkorange;
 }

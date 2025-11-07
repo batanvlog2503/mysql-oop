@@ -27,7 +27,7 @@ const Navbar = () => {
               to="/home"
               style={{ textDecoration: "none" }}
             >
-              <i style={{ color: "white" }}>TECH</i>
+              <i style={{ color: "Black" }}>TECH</i>
               <i style={{ color: "orange" }}>BLOG</i>
             </Link>
           </div>

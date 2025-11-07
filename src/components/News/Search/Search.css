@@ -1,14 +1,51 @@
-
-
-.inner-wrap-search{
-    padding: 20px;
-    margin: 20px;
-    
+.search {
+  margin-top: 20px;
+  margin-bottom: 40px;
 }
 
-.form-control{
-    padding: 20;
-    border-radius: 30px;
-    font-size: 25px;
-    font-weight: 700;
+.form-search {
+  width: 100%;
+}
+
+.search-box {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.search-box input {
+  width: 100%;
+  padding: 10px 45px 10px 15px; /* chừa khoảng trống cho icon */
+  border: 1px solid #ccc;
+  border-radius: 25px;
+  font-size: 20px;
+  outline: none;
+  transition: all 0.3s ease;
+}
+
+.search-box input:focus {
+  border-color: orange;
+  box-shadow: 0 0 6px rgba(255, 165, 0, 0.5);
+}
+
+/* nút icon */
+.search-box button {
+  position: absolute;
+  right: 10px;
+  background: none;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  color: gray;
+  font-size: 18px;
+  transition: color 0.3s ease;
+}
+
+.search-box button:hover {
+  color: orange;
+}
+
+.search-box button:active i {
+  transform: scale(0.95);
 }

@@ -4,8 +4,8 @@ body {
   height: 100;
   margin: 0;
   padding: 0;
-  background-color: black;
-  color: white; /* để chữ không bị ẩn trên nền đen */
+  background-color: white;
+  color: black; /* để chữ không bị ẩn trên nền đen */
 }
 
 #root {

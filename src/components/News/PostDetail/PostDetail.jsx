@@ -4,6 +4,7 @@ import "./PostDetail.css"
 import { useParams } from "react-router-dom"
 import { useState, useEffect } from "react"
 import axios from "axios"
+import Comment from "../Comment/Comment"
 const PostDetail = () => {
   const [active, setActive] = useState(false)
   const { id } = useParams()
@@ -12,6 +13,13 @@ const PostDetail = () => {
   const handleClick = (index) => {
     setActive(index)
   }
+
+  const [comments, setComments] = useState([])
+  const [newComment, setNewComment] = useState({
+    content: "",
+  })
+
+  const { content } = newComment
   console.log("Current ID from params:", id) // Debug log
 
   useEffect(() => {
@@ -20,33 +28,16 @@ const PostDetail = () => {
     if (id && id !== "undefined") {
       loadPosts()
       loadPostDetails()
+      // loadComments()
     } else {
       console.error("Invalid or missing post ID")
     }
   }, [id])
-  // useEffect(() => {
-  //   loadPostDetails()
-  //   loadPosts()
-  // })
-  // useEffect(() => {
-  //   // CHỈ GỌI API NẾU id CÓ GIÁ TRỊ HỢP LỆ
-  //   if (id) {
-  //     loadPosts()
-  //     loadPostDetails()
-  //   } else {
-  //     // (Optional) Ghi log để theo dõi nếu id không tồn tại
-  //     console.log("Post ID is undefined, skipping API calls.")
-  //   }
-  // }, [id])
+  const handleInputChange = (e) => {
+    setNewComment({ ...newComment, [e.target.name]: e.target.value })
+    // ví name = "firstName" = > firstName:"Jhon"
+  }
   const loadPostDetails = async () => {
-    // const result = await axios.get(
-    //   `http://localhost:8080/api/postdetails/${id}`,
-    //   {
-    //     validateStatus: () => {
-    //       return true
-    //     },
-    //   }
-    // )
     const token = localStorage.getItem("jwtToken")
     const result = await axios.get(`http://localhost:8081/post/detail/${id}`, {
       headers: {
@@ -57,14 +48,17 @@ const PostDetail = () => {
       },
     })
 
-    console.log("✅ Response status:", result.status)
-    console.log("📦 Response data:", result.data)
-    console.log("📝 Post title:", result.data.title)
-    console.log("👤 Author:", result.data.authorUser?.displayName)
+    console.log(" Response status:", result.status)
+    console.log(" Response data:", result.data)
+    console.log(" Post title:", result.data.title)
+    console.log(" Author:", result.data.authorUser?.displayName)
 
     if (result.status === 200) {
       setPostDetails(result.data)
+      // Set comments từ response
+
       console.log("PostDetail data load successfully")
+      console.log("data of PostDetails" + result.data)
     } else {
       alert("Post Details Failed")
     }
@@ -80,8 +74,38 @@ const PostDetail = () => {
       setPosts(result.data)
       console.log("Post data load Successfully")
       console.log(result.data)
+      setComments(result.data.commentDTOs)
     } else {
       alert("Post data failed")
+    }
+  }
+  // const loadComments = async () => {
+  //   try {
+  //     const res = await axios.get(`http://localhost:8081/post/${id}/comments`)
+  //     if (res.status === 200) {
+  //       setComments(res.data)
+  //     }
+  //   } catch (error) {
+  //     console.error("Error loading comments:", error)
+  //   }
+  // }
+  const saveComment = async (e) => {
+    e.preventDefault()
+    try {
+      const token = localStorage.getItem("jwtToken")
+      await axios.post(`http://localhost:8081/post/${id}/comment`, newComment, {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      })
+
+      alert("Comment added successfully!")
+      setNewComment({ content: "" })
+      //loadComments() // load lại danh sách
+    } catch (error) {
+      console.error("Error adding comment:", error)
+      alert("Failed to add comment")
     }
   }
   return (
@@ -194,7 +218,7 @@ const PostDetail = () => {
                 </div>
                 <div className="info-component">
                   <b style={{ color: "Orange" }}>Tags:&nbsp;</b>
-                  <span style={{ color: "White" }}>
+                  <span style={{ color: "rgb(45, 44, 44)" }}>
                     {" "}
                     {posts.tagDTOs &&
                       posts.tagDTOs.map((tag) => tag.name).join(", ")}
@@ -218,6 +242,48 @@ const PostDetail = () => {
               </div>
             </div>
           </div>
+        </div>
+      </div>
+      <div className="inner-wrap-comment">
+        <div className="post-detail-comment row">
+          <div className="post-detail-comment-title col-lg-8 col-xl-8 col-sm-12 col-12">
+            <h3>Comment ({comments.length})</h3>
+          </div>
+          <div className="post-detail-comment-form col-lg-8 col-xl-8 col-sm-12 col-12">
+            <form
+              action=""
+              className="input-group"
+              autoComplete="off"
+              onSubmit={(e) => saveComment(e)}
+            >
+              <div className="input-group mb-3 comment-post">
+                <textarea
+                  className="form-control"
+                  name="content"
+                  id="content"
+                  placeholder="Comment..."
+                  aria-label="content"
+                  aria-describedby="basic-addon1"
+                  value={content}
+                  onChange={(e) => handleInputChange(e)}
+                  required
+                  autoComplete="new-password"
+                  rows={4}
+                />
+              </div>
+              <div className="d-flex justify-content-end">
+                <button
+                  type="submit"
+                  className="btn btn-success button-submit-comment"
+                >
+                  Send
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+        <div className="post-detail-display-comment col-lg-8 col-xl-8 col-sm-12 col-12">
+          <Comment comment={comments}></Comment>
         </div>
       </div>
     </div>

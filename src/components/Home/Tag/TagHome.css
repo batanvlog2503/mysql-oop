@@ -1,0 +1,54 @@
+/* TagHome tổng thể */
+.inner-tags {
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 15px 20px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  width: 100%;
+  max-width: 400px; /* ~ tương đương col-4 */
+  margin: 20px auto;
+  height: auto;
+}
+
+/* Tiêu đề */
+.inner-tags h1 {
+  font-size: 22px;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 15px;
+  border-bottom: 2px solid orange;
+  display: inline-block;
+  padding-bottom: 5px;
+}
+
+/* Danh sách tag */
+.list-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+/* Từng thẻ tag */
+.list-tags li {
+  background-color: #f5f5f5;
+  border: 1px solid #ddd;
+  color: #333;
+  font-weight: 500;
+  font-size: 14px;
+  padding: 6px 12px;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin: 5px;
+}
+
+/* Hover hiệu ứng */
+.list-tags li:hover {
+  background-color: orange;
+  color: white;
+  border-color: orange;
+  transform: translateY(-2px);
+}

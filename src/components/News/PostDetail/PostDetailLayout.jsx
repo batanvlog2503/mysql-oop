@@ -13,7 +13,7 @@ const PostDetailLayout = () => {
       <div className="container-fluid post-detail-layout-section">
         <Navbar></Navbar>
         <PostDetail></PostDetail>
-        <SimilarBlog></SimilarBlog>
+        {/* <SimilarBlog></SimilarBlog> */}
         <Footer></Footer>
       </div>
     </div>

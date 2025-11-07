@@ -11,7 +11,7 @@ const Home = () => {
     <div className="container-fluid">
       <Navbar></Navbar>
       <Introduction />
-
+      
       <Social></Social>
       <Review></Review>
       <ViewGuest></ViewGuest>

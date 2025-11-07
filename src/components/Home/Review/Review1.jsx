@@ -1,6 +1,6 @@
 import React from "react"
 import "../Review/Review.css"
-const Review = () => {
+const Review1 = () => {
   return (
     <div className="container-fluid review-section">
       <div className="row">
@@ -13,4 +13,4 @@ const Review = () => {
   )
 }
 
-export default Review
+export default Review1

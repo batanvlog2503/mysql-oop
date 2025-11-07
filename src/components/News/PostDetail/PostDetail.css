@@ -8,10 +8,10 @@
   padding: 30px;
 }
 .post-detail-img img {
-  width: 80%; /* ✅ nhỏ lại còn 80% chiều rộng cột */
+  width: 80%; 
   height: auto;
-  max-height: 350px; /* ✅ hạn chế chiều cao */
-  object-fit: contain; /* ✅ không cắt ảnh */
+  max-height: 350px;
+  object-fit: contain; 
   border-radius: 30px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   overflow: hidden;
@@ -22,6 +22,8 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
+  font-weight: 450;
+  font-size: 18px;
 }
 .post-detail-title span {
   padding: 15px;
@@ -29,7 +31,7 @@
 }
 .post-detail-title h1 {
   padding: 15px;
-  color: white;
+  color: black;
   font-weight: 700;
 }
 
@@ -38,11 +40,11 @@
 }
 
 .inner-wrap-post-details .post-detail-contents h3 {
-  color: rgb(220, 220, 220);
+  color: black;
   margin: 25px 0px;
 }
 .inner-wrap-post-details .post-detail-contents p {
-  color: rgb(135, 133, 133);
+  color: rgb(67, 67, 67);
   margin: 25px 0px;
 }
 
@@ -63,13 +65,15 @@
   padding: 30px;
   display: flex;
   flex-direction: row;
+  color: black;
   justify-content: space-evenly;
+  border-top: 1px solid grey;
 }
 
 .post-detail-table-content-social span {
   padding: 10px;
-  color: rgb(146, 144, 144);
-  background-color: black;
+  color: black;
+  background-color: white;
   border-radius: 30px;
   border: 1px solid grey;
   transition: background-color 0.5s ease;
@@ -110,15 +114,14 @@
 }
 
 .post-detail-table-content-social .active2 i {
-  color: orange
+  color: orange;
 }
 
 .post-detail-table-content-social span.active2 {
   color: white;
 }
 
-
-.post-detail-info .row{
+.post-detail-info .row {
   padding: 25px;
 }
 
@@ -126,50 +129,90 @@
   padding: 0;
   text-align: center;
   padding: 12px;
+  
+  
 }
 
-.info-component h5{
-  color: orange
+.info-component h5 {
+  color: orange;
 }
-.info-component span{
-  color: white;
+.info-component span {
+  color: rgb(45, 44, 44);
+  
 }
-.post-detail-info{
+.post-detail-info {
   border-bottom: 1px solid grey;
-
 }
 
-
-.post-detail-table-of-contents{
+.post-detail-table-of-contents {
   padding: 20px;
 }
-.post-detail-table-of-contents .title{
-
+.post-detail-table-of-contents .title {
   padding: 15px;
   color: grey;
 }
 
-
 .post-detail-table-list {
   padding: 15px;
-  background-color: rgb(22, 22, 22);
+  background-color: white;
   margin: 0 25px;
   border-radius: 15px;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
 }
-.post-detail-table-list ul li{
-  color: rgb(210, 205, 205);
+.post-detail-table-list ul li {
+  color: black;
   margin: 5px 0;
-  
 }
 
-
-.post-detail-table-of-contents{
+.post-detail-table-of-contents {
   border-bottom: 1px solid grey;
 }
-
 
 .post-detail-table-content {
   position: sticky;
   top: 130px; /* 👈 khoảng cách từ trên xuống khi bắt đầu cố định */
   align-self: flex-start;
 }
+
+/* -------------------Comment---------------------- */
+.inner-wrap-comment {
+  margin-top: 40px;
+}
+.post-detail-comment {
+  padding: 20px;
+}
+
+.post-detail-comment .post-detail-comment-title h3 {
+  padding: 10px;
+  margin: 15px;
+  color: grey;
+}
+.post-detail-comment-form {
+  padding: 30px;
+}
+
+.comment-post textarea {
+  font-size: 18px; /* 👈 chữ nhỏ lại */
+  border-radius: 8px; /* 👈 khung bo góc nhẹ */
+  resize: none; /* không cho kéo dãn */
+  height: 150px; /* 👈 giảm chiều cao (vuông hơn) */
+  padding: 8px 10px;
+  line-height: 1.4;
+  font-weight: 600;
+}
+
+.comment-post textarea:focus {
+  outline: none;
+  border: 1.5px solid #007bff; /* viền xanh khi focus */
+  box-shadow: 0 0 4px rgba(0, 123, 255, 0.3);
+}
+
+.button-submit-comment{
+  margin: 15px;
+  padding: 15px;
+  font-size: 20px;
+  border-radius:10px;
+
+}
+
+

@@ -1,0 +1,41 @@
+.list-comment {
+  padding: 40px;
+  margin: 15px;
+}
+
+.list-comment h2 {
+  font-weight: bold;
+  color: white;
+  display: inline-block;
+  position: relative;
+  font-weight: 600;
+
+  color: grey;
+  padding-bottom: 5px;
+  border-bottom: 3px solid orange; /* màu gạch dưới */
+}
+.list-comment .comment-details {
+  background-color: white;
+  padding: 10px;
+  margin: 10px;
+}
+
+.list-comment .comment-details .user-comments img{
+   width: 30px;
+   height: auto;
+}
+
+.user-comment {
+  display: flex;
+  align-items: center;
+  gap: 8px; /* khoảng cách giữa ảnh và tên */
+}
+
+.user-comment img {
+    margin-bottom: 10px;
+  width: 32px;      /* 👈 giảm kích thước ảnh */
+  height: 32px;
+  border-radius: 50%; /* bo tròn ảnh cho đẹp */
+  object-fit: cover;  /* giữ tỉ lệ ảnh */
+  border: 1px solid #ccc; /* đường viền nhẹ */
+}

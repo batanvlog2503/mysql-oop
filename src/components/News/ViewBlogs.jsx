@@ -1,7 +1,7 @@
 import React from "react"
 import Navbar from "../Navbar"
 import NewsIntroduction from "./NewsIntroduction"
-
+import Review1 from "../Home/Review/Review1.jsx"
 import { Outlet } from "react-router-dom"
 import PostCard from "./PostCard/PostCard"
 import PostList from "./PostList/PostList"
@@ -28,21 +28,23 @@ const ViewBlogs = () => {
             style={{ marginBottom: "30px" }}
           >
             <div className="row">
-              <div className="list-blog col-xl-8 col-lg-8 col-sm-12 col-12">
-                <PostList></PostList>
-              </div>
-              <div className="tags col-xl-4 col-lg-4 col-sm-12 col-12">
+              {/* <div className="tags col-xl-12 col-lg-12 col-sm-12 col-12">
                 <Tag></Tag>
+              </div> */}
+              <div className="list-blog col-xl-12 col-lg-12 col-sm-12 col-12">
+                <PostList></PostList>
               </div>
             </div>
           </div>
-          <div className="similar-blogs col-lg-12 col-xl-12 col-sm-12 col-12">
+          {/* <div className="similar-blogs col-lg-12 col-xl-12 col-sm-12 col-12">
             <SimilarBlog></SimilarBlog>
-          </div>
+          </div> */}
+          {/* <div className="review1 col-lg-12 col-xl-12 col-sm-12 col-12">
+            <Review1></Review1>
+          </div> */}
           <div className="footer col-lg-12 col-xl-12 col-sm-12 col-12">
             {" "}
             <Footer></Footer>
-            
           </div>
         </div>
       </div>

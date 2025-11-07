@@ -3,6 +3,7 @@ import "../Introduction/Introduction.css"
 import { useState } from "react"
 import axios from "axios"
 import Tag from "../Tag/Tag"
+import TagHome from "../Tag/TagHome"
 const Introduction = () => {
   const [tags, setTags] = useState([])
 
@@ -58,7 +59,7 @@ const Introduction = () => {
           </div>
         </div>
         <div className="col-lg-4 col-xl-4 col-sm-12 col-12">
-          <Tag></Tag>
+          <TagHome></TagHome>
         </div>
       </div>
     </div>
