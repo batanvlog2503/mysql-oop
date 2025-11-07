@@ -5,6 +5,7 @@ import { useState, useEffect } from "react"
 
 import axios from "axios"
 const UpdateBlog = () => {
+  const [tagNameLists, setTagNameLists] = useState([])
   const navigate = useNavigate()
   const { id } = useParams()
   const [blog, setBlog] = useState({
@@ -18,6 +19,7 @@ const UpdateBlog = () => {
     img: "",
     link: "",
     categoryName: "",
+    tagNameList: "",
   })
   const {
     title,
@@ -30,6 +32,8 @@ const UpdateBlog = () => {
     img,
     link,
     categoryName,
+
+    tagNameList,
   } = blog
   useEffect(() => {
     loadBlog()
@@ -46,6 +50,10 @@ const UpdateBlog = () => {
     })
     if (result.status === 200) {
       setBlog(result.data)
+      // Set tags từ data load về
+      if (result.data.tagNameList && Array.isArray(result.data.tagNameList)) {
+        setTagNameLists(result.data.tagNameList)
+      }
     } else {
       alert("Result failed")
     }
@@ -80,6 +88,7 @@ const UpdateBlog = () => {
         img: "",
         link: "",
         categoryName: "",
+        tagNameList: [],
       })
       // Option 2: Redirect
       // navigate("/view-student")  // nếu dùng useNavigate()
@@ -92,8 +101,15 @@ const UpdateBlog = () => {
   }
   return (
     <div>
-      <div className="container-fluid write-blog-detail">
-        <div className="inner-wrap-write">
+      <div
+        className="container-fluid write-blog-detail"
+        style={{ padding: "0px" }}
+      >
+        <Navbar></Navbar>
+        <div
+          className="inner-wrap-write"
+          style={{ marginTop: "50px" }}
+        >
           <div className="form-write-blog">
             <div
               className="title-write-blog text-center"
@@ -227,12 +243,13 @@ const UpdateBlog = () => {
                   name="tagNameList"
                   id="tagNameList"
                   placeholder="Enter tags (press Enter to add)"
+                  //  value={tagNameList}
                   onKeyDown={(e) => {
                     if (e.key === "Enter") {
                       e.preventDefault()
                       const newTag = e.target.value.trim()
-                      if (newTag && !tagNameList.includes(newTag)) {
-                        setTagNameList([...tagNameList, newTag])
+                      if (newTag && !tagNameLists.includes(newTag)) {
+                        setTagNameLists([...tagNameLists, newTag])
                       }
                       e.target.value = ""
                     }

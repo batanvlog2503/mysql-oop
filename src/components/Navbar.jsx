@@ -24,7 +24,7 @@ const Navbar = () => {
         <div className="row w-100">
           <div className="inner-title nav-link col-xl-3 col-lg-3">
             <Link
-              to="/"
+              to="/home"
               style={{ textDecoration: "none" }}
             >
               <i style={{ color: "white" }}>TECH</i>

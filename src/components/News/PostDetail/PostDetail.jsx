@@ -79,6 +79,7 @@ const PostDetail = () => {
     if (result.status === 200) {
       setPosts(result.data)
       console.log("Post data load Successfully")
+      console.log(result.data)
     } else {
       alert("Post data failed")
     }
@@ -92,6 +93,7 @@ const PostDetail = () => {
               Written by: {posts.authorName || "Unknown Author"} | Update on:{" "}
               {new Date(posts.publishedAt).toLocaleDateString("vi-VN")}
             </span>
+
             <h1>{posts.title}</h1>
           </div>
           <div className="post-detail-img col-lg-4 col-xl-4 col-sm-12 col-12">
@@ -189,6 +191,14 @@ const PostDetail = () => {
                 <div className="info-component col-xl-6 col-lg-6 col-md-12 col-12">
                   <h5>Author Name</h5>
                   <span>{posts.authorName || "Unknown Author"}</span>
+                </div>
+                <div className="info-component">
+                  <b style={{ color: "Orange" }}>Tags:&nbsp;</b>
+                  <span style={{ color: "White" }}>
+                    {" "}
+                    {posts.tagDTOs &&
+                      posts.tagDTOs.map((tag) => tag.name).join(", ")}
+                  </span>
                 </div>
               </div>
             </div>

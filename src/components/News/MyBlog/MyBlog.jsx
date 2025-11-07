@@ -56,16 +56,38 @@ const MyBlog = () => {
       alert("Result failed")
     }
   }
+
+  const handleDelete = async (id) => {
+    const confirmDelete = window.confirm(
+      "Bạn có chắc chắn muốn xóa bài viết này không?"
+    )
+    if (!confirmDelete) return // nếu người dùng chọn Cancel thì dừng lại
+
+    try {
+      const token = localStorage.getItem("jwtToken")
+      await axios.delete(`http://localhost:8081/post/delete/${id}`, {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      })
+      alert("Xóa bài viết thành công!") 
+      loadPosts() // load lại danh sách
+    } catch (error) {
+      console.error("Lỗi khi xóa bài viết:", error)
+      alert("Không thể xóa bài viết, vui lòng thử lại!") 
+    }
+  }
   return (
     <div className="container-fluid my-blog">
       <Navbar></Navbar>
-      <div className="container display-my-blog">
+      <div
+        className="container display-my-blog"
+        style={{ marginTop: "40px" }}
+      >
         <div className="inner-wrap-my-blog">
           <h1>My Blog</h1>
-          <div
-            className="row"
-            style={{ border: "1px solid grey" }}
-          >
+          <div className="row">
             {Array.isArray(posts) &&
               posts.map((post, index) => (
                 <div
@@ -105,7 +127,12 @@ const MyBlog = () => {
                       >
                         Update
                       </Link>
-                      <Link className="btn btn-danger">Delete</Link>
+                      <button
+                        className="btn btn-danger"
+                        onClick={() => handleDelete(post.id)}
+                      >
+                        Delete
+                      </button>
                     </div>
                   </div>
                 </div>

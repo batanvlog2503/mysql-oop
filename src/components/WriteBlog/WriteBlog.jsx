@@ -6,7 +6,7 @@ import axios from "axios"
 // import NavbarLogin from "./NavbarLogin"
 import { useState, useEffect } from "react"
 const WriteBlog = () => {
-  const [tagNameList, setTagNameList] = useState([])
+  const [tagNameLists, setTagNameLists] = useState([])
   const [blog, setBlog] = useState({
     title: "",
     content: "",
@@ -18,6 +18,7 @@ const WriteBlog = () => {
     img: "",
     link: "",
     categoryName: "",
+    tagNameList: "",
   })
   const {
     title,
@@ -30,6 +31,7 @@ const WriteBlog = () => {
     img,
     link,
     categoryName,
+    tagNameList,
   } = blog
   const handleInputChange = (e) => {
     const { name, value } = e.target
@@ -45,7 +47,10 @@ const WriteBlog = () => {
       const token = localStorage.getItem("jwtToken")
       const loadBlog = {
         ...blog,
-        tagNameList: tagNameList, // thêm mảng tags vào
+        tagNameList: blog.tagNameList
+          .split(",")
+          .map((tag) => tag.trim())
+          .filter((tag) => tag !== ""),
       }
       await axios.post("http://localhost:8081/post/create", loadBlog, {
         headers: {
@@ -63,10 +68,15 @@ const WriteBlog = () => {
 
   return (
     <div>
-
-      <div className="container-fluid write-blog-detail">
+      <div
+        className="container-fluid write-blog-detail"
+        style={{ padding: "0px" }}
+      >
         <Navbar></Navbar>
-        <div className="inner-wrap-write">
+        <div
+          className="inner-wrap-write"
+          style={{ marginTop: "50px" }}
+        >
           <div className="form-write-blog">
             <div
               className="title-write-blog text-center"
@@ -187,7 +197,7 @@ const WriteBlog = () => {
                   autoComplete="new-password"
                 />
               </div>
-              <div className="input-group mb-3 tag-name-list-blog">
+              {/* <div className="input-group mb-3 tag-name-list-blog">
                 <label
                   htmlFor="tagNameList"
                   className="input-group-text"
@@ -204,15 +214,35 @@ const WriteBlog = () => {
                     if (e.key === "Enter") {
                       e.preventDefault()
                       const newTag = e.target.value.trim()
-                      if (newTag && !tagNameList.includes(newTag)) {
-                        setTagNameList([...tagNameList, newTag])
+                      if (newTag && !tagNameLists.includes(newTag)) {
+                        setTagNameLists([...tagNameLists, newTag])
                       }
                       e.target.value = ""
                     }
                   }}
+                  required
+                />
+              </div> */}
+              <div className="input-group mb-3 tag-name-list-blog">
+                <label
+                  htmlFor="tagNameList"
+                  className="input-group-text"
+                >
+                  Tags:
+                </label>
+                <input
+                  type="text"
+                  className="form-control"
+                  name="tagNameList"
+                  id="tagNameList"
+                  placeholder="Enter tags separated by commas (e.g: tag1, tag2, tag3)"
+                  aria-label="tagNameList"
+                  value={tagNameList}
+                  onChange={(e) => handleInputChange(e)}
+                  required
+                  autoComplete="new-password"
                 />
               </div>
-
               <div className="input-group mb-3 introduction-blog">
                 <label
                   htmlFor="introduction" // giới thiệu đầu bài
