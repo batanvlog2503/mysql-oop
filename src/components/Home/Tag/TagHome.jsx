@@ -24,7 +24,8 @@ const TagHome = () => {
 //     }
 //   }
   return (
-    <div className="inner-tags">
+   <div className="inner-tag-home">
+     <div className="inner-tags">
       <h1>Tags</h1>
 
       <ul className="list-tags">
@@ -44,6 +45,7 @@ const TagHome = () => {
         <li>React</li>
       </ul>
     </div>
+   </div>
   )
 }
 {/* <Tag onTagSelect={(selectedTag) => setSearch(selectedTag)} /> */} // lọc theo Tag

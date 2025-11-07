@@ -1,31 +1,134 @@
-.my-blog .post-img {
+.my-blog {
+  background-color: #f9fafc;
+  min-height: 100vh;
+  padding-bottom: 50px;
+}
+
+/* --- Khung hiển thị chính --- */
+.display-my-blog {
+  background: #fff;
+  border-radius: 16px;
   padding: 30px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
 }
 
-.my-blog .row .post-img img {
+.display-my-blog h1 {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #333;
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+/* --- Một bài viết --- */
+.inner-wrap {
+  background: #fff;
+  border-radius: 14px;
+  padding: 20px;
+  margin-bottom: 25px;
+  transition: all 0.3s ease;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.05);
+}
+
+.inner-wrap:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* --- Ảnh bài viết --- */
+.post-img img {
   width: 100%;
-  height: auto;
-  border-radius: 15px;
+  height: 230px;
+  object-fit: cover;
+  border-radius: 12px;
 }
 
+/* --- Tiêu đề & nội dung --- */
+.post-title {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.post-title h3 {
+  color: #222;
+  font-size: 1.4rem;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+.post-title p {
+  font-size: 0.9rem;
+  color: #888;
+  margin-bottom: 8px;
+}
+
+.post-title span {
+  color: #444;
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+/* --- Nút Read More --- */
+.post-read-more {
+  background: white;
+  color: black;
+  padding: 10px 20px;
+  border:1px solid grey;
+  border-radius: 15px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  transition: background 0.3s ease;
+  align-self: flex-start;
+}
+
+.post-read-more:hover {
+  background: orange;
+  color: white;
+}
+
+/* --- Cột Update/Delete --- */
 .post-update-and-delete {
   display: flex;
   flex-direction: column;
-  align-items: center;
   justify-content: center;
+  gap: 10px;
 }
+
 .post-update-and-delete .btn {
-  margin: 20px;
+  width: 100%;
+  border-radius: 8px;
+  font-weight: 600;
 }
 
-.inner-wrap-my-blog .row .inner-wrap {
-  background-color: rgb(17, 16, 16);
+/* --- Responsive --- */
+@media (max-width: 992px) {
+  .post-update-and-delete {
+    flex-direction: row;
+    justify-content: space-between;
+    margin-top: 15px;
+  }
+
+  .post-img img {
+    height: 150px;
+  }
 }
 
-.inner-wrap-my-blog .row .inner-wrap {
-  margin: 20px;
-}
+@media (max-width: 576px) {
+  .display-my-blog {
+    padding: 15px;
+  }
 
-.inner-wrap-my-blog .row .inner-wrap .post-title {
-  padding: 40px;
+  .post-title h3 {
+    font-size: 1.2rem;
+  }
+
+  .post-title span {
+    font-size: 0.9rem;
+  }
+
+  .post-read-more {
+    padding: 6px 15px;
+    font-size: 0.85rem;
+  }
 }

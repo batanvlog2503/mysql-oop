@@ -7,7 +7,7 @@ import postcard5 from "../PostList/ImgPostList/postcard5.jpg"
 import postcard6 from "../PostList/ImgPostList/postcard6.jpg"
 import postcard7 from "../PostList/ImgPostList/postcard7.jpg"
 import postcard8 from "../PostList/ImgPostList/postcard8.jpg"
-
+import { FaTrashAlt, FaEdit } from "react-icons/fa"
 import "./MyBlog.css"
 import Navbar from "../../Navbar"
 import axios from "axios"
@@ -71,11 +71,11 @@ const MyBlog = () => {
           Authorization: `Bearer ${token}`,
         },
       })
-      alert("Xóa bài viết thành công!") 
+      alert("Xóa bài viết thành công!")
       loadPosts() // load lại danh sách
     } catch (error) {
       console.error("Lỗi khi xóa bài viết:", error)
-      alert("Không thể xóa bài viết, vui lòng thử lại!") 
+      alert("Không thể xóa bài viết, vui lòng thử lại!")
     }
   }
   return (
@@ -125,13 +125,13 @@ const MyBlog = () => {
                         to={`/update-blog/${post.id}`}
                         className="btn btn-primary"
                       >
-                        Update
+                        <FaEdit/>
                       </Link>
                       <button
                         className="btn btn-danger"
                         onClick={() => handleDelete(post.id)}
                       >
-                        Delete
+                        <FaTrashAlt />
                       </button>
                     </div>
                   </div>

@@ -1,5 +1,5 @@
 /* TagHome tổng thể */
-.inner-tags {
+.inner-tag-home {
   background: #ffffff;
   border-radius: 12px;
   padding: 15px 20px;
@@ -11,7 +11,7 @@
 }
 
 /* Tiêu đề */
-.inner-tags h1 {
+.inner-tag-home h1 {
   font-size: 22px;
   font-weight: 600;
   color: #333;
@@ -22,7 +22,7 @@
 }
 
 /* Danh sách tag */
-.list-tags {
+.inner-tag-home .list-tags {
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
@@ -32,7 +32,7 @@
 }
 
 /* Từng thẻ tag */
-.list-tags li {
+.inner-tags .list-tags li {
   background-color: #f5f5f5;
   border: 1px solid #ddd;
   color: #333;
@@ -46,7 +46,7 @@
 }
 
 /* Hover hiệu ứng */
-.list-tags li:hover {
+.inner-tags .list-tags li:hover {
   background-color: orange;
   color: white;
   border-color: orange;

@@ -65,7 +65,7 @@
 }
 
 /* ✅ Nút Read More cố định ở góc trái dưới */
-.post-read-more {
+.post-list .post-read-more {
   position: absolute;
   bottom: 15px;
   left: 15px;
@@ -78,7 +78,7 @@
   cursor: pointer;
 }
 
-.post-read-more:hover {
+.post-list .post-read-more:hover {
   background-color: orange;
   color: white;
   border: 1px solid white;
