@@ -1,12 +1,12 @@
 import React from "react"
-import "./WriteBlog.css"
-import Navbar from "../Navbar"
-import { Outlet, useNavigate, useParams } from "react-router-dom"
-import axios from "axios"
-// import NavbarLogin from "./NavbarLogin"
+import { useNavigate, useParams } from "react-router-dom"
+import Navbar from "../../Navbar"
 import { useState, useEffect } from "react"
-const WriteBlog = () => {
-  const [tagNameList, setTagNameList] = useState([])
+
+import axios from "axios"
+const UpdateBlog = () => {
+  const navigate = useNavigate()
+  const { id } = useParams()
   const [blog, setBlog] = useState({
     title: "",
     content: "",
@@ -31,41 +31,68 @@ const WriteBlog = () => {
     link,
     categoryName,
   } = blog
+  useEffect(() => {
+    loadBlog()
+  }, [])
+  const loadBlog = async () => {
+    const result = await axios.get(`http://localhost:8081/post/detail/${id}`, {
+      validateStatus: () => {
+        return true
+      },
+      // headers: {
+      //   "Content-Type": "application/json",
+      //   Authorization: `Bearer ${token}`,
+      // },
+    })
+    if (result.status === 200) {
+      setBlog(result.data)
+    } else {
+      alert("Result failed")
+    }
+  }
   const handleInputChange = (e) => {
-    const { name, value } = e.target
-    setBlog((prev) => ({
-      ...prev,
-      [name]: value,
-    }))
+    setBlog({ ...blog, [e.target.name]: e.target.value })
+    // ví name = "firstName" = > firstName:"Jhon"
   }
 
-  const saveBlog = async (e) => {
+  const updateBlog = async (e) => {
     e.preventDefault()
+    //Ngăn trình duyệt reload lại trang khi form được submit
     try {
       const token = localStorage.getItem("jwtToken")
-      const loadBlog = {
-        ...blog,
-        tagNameList: tagNameList, // thêm mảng tags vào
-      }
-      await axios.post("http://localhost:8081/post/create", loadBlog, {
+      await axios.put(`http://localhost:8081/post/update/${id}`, blog, {
         headers: {
           "Content-Type": "application/json",
           Authorization: `Bearer ${token}`,
         },
       })
-      console.log(loadBlog)
-      alert(" Post Created Successfully")
+      console.log("Token:", token) // Debug
+      console.log("Blog :", blog)
+      // Option 1: Reset form
+      setBlog({
+        title: "",
+        content: "",
+        excerpt: "",
+        slug: "",
+        introduction: "",
+        contentDetail: "",
+        endContent: "",
+        img: "",
+        link: "",
+        categoryName: "",
+      })
+      // Option 2: Redirect
+      // navigate("/view-student")  // nếu dùng useNavigate()
+      alert("Update Post Successfully!!!")
+      navigate("/my-blog")
     } catch (error) {
-      alert(" Post Failed")
-      console.error("Error:", error)
+      console.error("Update Post failed", error)
+      alert("Update Post Failed. Please try again.")
     }
   }
-
   return (
     <div>
-
       <div className="container-fluid write-blog-detail">
-        <Navbar></Navbar>
         <div className="inner-wrap-write">
           <div className="form-write-blog">
             <div
@@ -75,7 +102,7 @@ const WriteBlog = () => {
               <h2
                 style={{ fontSize: "50px", color: "Black", fontWeight: "700" }}
               >
-                Write
+                Update
               </h2>
             </div>
 
@@ -83,7 +110,7 @@ const WriteBlog = () => {
               action=""
               className="input-group"
               autoComplete="off"
-              onSubmit={(e) => saveBlog(e)}
+              onSubmit={(e) => updateBlog(e)}
             >
               <div className="input-group mb-3 title-blog">
                 <label
@@ -316,7 +343,7 @@ const WriteBlog = () => {
                   type="submit"
                   className="btn btn-outline-success w-100"
                 >
-                  Post
+                  Update
                 </button>
               </div>
             </form>
@@ -326,4 +353,5 @@ const WriteBlog = () => {
     </div>
   )
 }
-export default WriteBlog
+
+export default UpdateBlog

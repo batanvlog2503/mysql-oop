@@ -1,17 +1,25 @@
-
-
-import React from 'react'
-import { Link } from 'react-router-dom'
+import React from "react"
+import { Link } from "react-router-dom"
 // import "./NavbarLogin.css"
 const NavbarLogin = () => {
   return (
-    <div className="navbar navbar-expand-lg" style={{backgroundColor:"black", minHeight:"10vh" ,borderBottom: "1px solid grey"}}>
+    <div
+      className="navbar navbar-expand-lg"
+      style={{
+        backgroundColor: "black",
+        minHeight: "10vh",
+        borderBottom: "1px solid grey",
+      }}
+    >
       <div className="container-fluid header">
         <div className="row w-100">
-          <div className="inner-title nav-link col-xl-4 col-lg-4" >
-            <Link to="/" style={{textDecoration:"none"}}>
-              <i style={{color:"white"}}>TECH</i>
-              <i style={{ color: "orange"}}>BLOG</i>
+          <div className="inner-title nav-link col-xl-4 col-lg-4">
+            <Link
+              to="/"
+              style={{ textDecoration: "none" }}
+            >
+              <i style={{ color: "white" }}>TECH</i>
+              <i style={{ color: "orange" }}>BLOG</i>
             </Link>
           </div>
           <div className="inner-page col-xl-4 col-lg-4">
@@ -27,7 +35,6 @@ const NavbarLogin = () => {
           </div>
         </div>
       </div>
-      
     </div>
   )
 }

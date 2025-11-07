@@ -8,10 +8,11 @@ import PostList from "./PostList/PostList"
 import Tag from "../Home/Tag/Tag"
 import SimilarBlog from "./SimilarBlog/SimilarBlog"
 import Footer from "../Home/Footer/Footer.jsx"
+
 const ViewBlogs = () => {
   return (
     <div>
-      <Navbar></Navbar>
+      
       <NewsIntroduction></NewsIntroduction>
       {/* <PostCard></PostCard> */}
       <div
@@ -29,8 +30,6 @@ const ViewBlogs = () => {
             <div className="row">
               <div className="list-blog col-xl-8 col-lg-8 col-sm-12 col-12">
                 <PostList></PostList>
-                <Outlet></Outlet>
-                
               </div>
               <div className="tags col-xl-4 col-lg-4 col-sm-12 col-12">
                 <Tag></Tag>
@@ -43,10 +42,10 @@ const ViewBlogs = () => {
           <div className="footer col-lg-12 col-xl-12 col-sm-12 col-12">
             {" "}
             <Footer></Footer>
+            
           </div>
         </div>
       </div>
-      
     </div>
   )
 }
