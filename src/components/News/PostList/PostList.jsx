@@ -121,7 +121,7 @@ const PostList = () => {
               <div className="post-card-content">
                 <h3>{post.title}</h3>
                 <p>
-                  {post.authorName} |{" "}
+                  Author Name: {post.authorName} | Publish At:{" "}
                   {new Date(post.publishedAt).toLocaleDateString("vi-VN")}
                 </p>
                 <span>{post.excerpt}</span>
