@@ -1,54 +1,72 @@
-import React from "react"
-import { useState, useEffect } from "react"
+import React, { useState, useEffect } from "react"
 import axios from "axios"
-const Img = ({ id }) => {
-  const [postDetails, setPostDetails] = useState({})
-  console.log("Current ID from params:", id) // Debug log
-  const [imgUrl, setImgUrl] = useState("")
-  useEffect(() => {
-    console.log("ID value:", id, "Type:", typeof id) // Kiểm tra giá trị
+// import defaultImg from "../../assets/default-image.jpg" // nếu bạn muốn dùng ảnh mặc định thay vì placeholder
 
+const Img = ({ id, alt, className }) => {
+  const [postDetails, setPostDetails] = useState({})
+  const [imgUrl, setImgUrl] = useState("")
+  const [imgError, setImgError] = useState(false)
+
+  useEffect(() => {
     if (id && id !== "undefined") {
       loadPostDetails()
     } else {
       console.error("Invalid or missing post ID")
     }
   }, [id])
+
   const loadPostDetails = async () => {
-    const token = localStorage.getItem("jwtToken")
-    const result = await axios.get(`http://localhost:8081/post/detail/${id}`, {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-      validateStatus: () => {
-        return true
-      },
-    })
-
-    console.log(" Response data:", result.data)
-    console.log(" Post title:", result.data.title)
-    console.log(" Author:", result.data.authorUser?.displayName)
-    //---------img----------
-    console.log("IMG value:", result.data.img)
-    console.log("IMG type:", typeof result.data.img)
-    if (result.status === 200) {
-      setPostDetails(result.data)
-      setImgUrl(result.data.img)
-      // Set comments từ response
-
-      console.log("PostDetail data load successfully")
-      console.log(result.data)
-    } else {
-      alert("Post Details Failed")
+    try {
+      const token = localStorage.getItem("jwtToken")
+      const result = await axios.get(
+        `http://localhost:8081/post/detail/${id}`,
+        {
+          headers: { Authorization: `Bearer ${token}` },
+          validateStatus: () => true,
+        }
+      )
+      if (result.status === 200) {
+        setPostDetails(result.data)
+        setImgUrl(result.data.img)
+        setImgError(false)
+      } else {
+        console.warn("Post detail load returned status:", result.status)
+        setImgError(true)
+      }
+    } catch (error) {
+      console.error("Error loading post details:", error)
+      setImgError(true)
     }
   }
+
+  const handleImgError = () => {
+    setImgError(true)
+  }
+
   return (
-    <div>
-      {postDetails.img && (
+    <div className={className}>
+      {imgUrl && !imgError ? (
         <img
           src={imgUrl}
-          alt="Post"
+          alt={alt || postDetails.title || "Post image"}
+          onError={handleImgError}
+          
         />
+      ) : (
+        <div
+          className={`img-error ${className || ""}`}
+          style={{
+            width: "100%",
+            height: "200px",
+            backgroundColor: "#e0e0e0",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            color: "#999",
+          }}
+        >
+          No Image
+        </div>
       )}
     </div>
   )

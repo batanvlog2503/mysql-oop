@@ -286,7 +286,10 @@ const PostDetail = () => {
           </div>
         </div>
         <div className="post-detail-display-comment col-lg-8 col-xl-8 col-sm-12 col-12">
-          <Comment comment={comments}></Comment>
+          <Comment
+            comment={comments}
+            postId={postDetails.id}
+          ></Comment>
         </div>
       </div>
     </div>

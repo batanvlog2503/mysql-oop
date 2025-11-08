@@ -18,6 +18,7 @@
   color: #333;
   text-align: center;
   margin-bottom: 40px;
+  
 }
 
 /* --- Một bài viết --- */
@@ -27,7 +28,7 @@
   padding: 20px;
   margin-bottom: 25px;
   transition: all 0.3s ease;
-  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
 }
 
 .inner-wrap:hover {

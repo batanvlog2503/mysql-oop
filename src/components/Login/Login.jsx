@@ -88,7 +88,7 @@ const Login = () => {
         console.log("Login response:", response.data)
         // Nếu có context user, set lại user
         setUser({ username: users.username, password: users.password })
-
+        localStorage.setItem("loginUser", JSON.stringify(users))
         // Reset form
         setUsers({ username: "", password: "" })
 
@@ -117,9 +117,7 @@ const Login = () => {
             className="title-login text-center"
             style={{ padding: "30px" }}
           >
-            <h1
-              style={{ fontSize: "50px", color: "Black", fontWeight: "700" }}
-            >
+            <h1 style={{ fontSize: "50px", color: "Black", fontWeight: "700" }}>
               Login
             </h1>
           </div>

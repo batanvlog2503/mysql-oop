@@ -6,6 +6,7 @@ import axios from "axios"
 // import NavbarLogin from "./NavbarLogin"
 import { useState, useEffect } from "react"
 const WriteBlog = () => {
+  const navigate = useNavigate()
   const [tagNameLists, setTagNameLists] = useState([])
   const [blog, setBlog] = useState({
     title: "",
@@ -60,6 +61,7 @@ const WriteBlog = () => {
       })
       console.log(loadBlog)
       alert(" Post Created Successfully")
+      navigate("/view-blogs")
     } catch (error) {
       alert(" Post Failed")
       console.error("Error:", error)

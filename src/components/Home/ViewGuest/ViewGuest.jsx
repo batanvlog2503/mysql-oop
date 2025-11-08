@@ -97,14 +97,14 @@ const ViewGuest = () => {
           <div className="view-guest-contact">
             <span style={{ marginRight: "10px" }}>
               <i
-                class="fa-brands fa-gratipay"
+                className="fa-brands fa-gratipay"
                 style={{ color: "orange" }}
               ></i>{" "}
               20k{" "}
             </span>
             <span>
               <i
-                class="fa-brands fa-telegram"
+                className="fa-brands fa-telegram"
                 style={{ color: "lightgreen" }}
               ></i>{" "}
               24

@@ -1,12 +1,4 @@
 import React, { useEffect } from "react"
-import postcard1 from "../PostList/ImgPostList/postcard1.jpg"
-import postcard2 from "../PostList/ImgPostList/postcard2.jpg"
-import postcard3 from "../PostList/ImgPostList/postcard3.jpg"
-import postcard4 from "../PostList/ImgPostList/postcard4.jpg"
-import postcard5 from "../PostList/ImgPostList/postcard5.jpg"
-import postcard6 from "../PostList/ImgPostList/postcard6.jpg"
-import postcard7 from "../PostList/ImgPostList/postcard7.jpg"
-import postcard8 from "../PostList/ImgPostList/postcard8.jpg"
 import { FaTrashAlt, FaEdit } from "react-icons/fa"
 import "./MyBlog.css"
 import Navbar from "../../Navbar"
@@ -14,21 +6,12 @@ import axios from "axios"
 import { useState } from "react"
 import { useNavigate } from "react-router-dom"
 import { Link } from "react-router-dom"
-import { Outlet } from "react-router-dom"
+import Img from "../../Home/img/Img"
 
 const MyBlog = () => {
   const [posts, setPosts] = useState([])
   const navigate = useNavigate()
-  const postcard = [
-    postcard1,
-    postcard2,
-    postcard3,
-    postcard4,
-    postcard5,
-    postcard6,
-    postcard7,
-    postcard8,
-  ]
+
   useEffect(() => {
     loadPosts()
   }, [])
@@ -86,7 +69,7 @@ const MyBlog = () => {
         style={{ marginTop: "40px" }}
       >
         <div className="inner-wrap-my-blog">
-          <h1>My Blog</h1>
+          <h1 style={{ fontSize: "50px" }}>My Blog</h1>
           <div className="row">
             {Array.isArray(posts) &&
               posts.map((post, index) => (
@@ -96,20 +79,17 @@ const MyBlog = () => {
                 >
                   <div className="row">
                     <div className="post-img col-xl-4 col-lg-4 col-sm-12 col-12">
-                      <img
-                        src={postcard[index]}
-                        alt={`postcard${index + 1}`}
-                      />
+                      <Img id={post.id}></Img>
                     </div>
 
                     <div className="post-title col-xl-6 col-lg-6 col-sm-12 col-12">
-                      <h3>{post.title}</h3>
-                      <p>
-                        {post.authorName} |
+                      <h3 style={{ padding: "15px" }}>{post.title}</h3>
+                      <p style={{ padding: "15px" }}>
+                        Display Name: {post.authorName} | Published At:{" "}
                         {new Date(post.publishedAt).toLocaleDateString("vi-VN")}{" "}
-                        | {post.viewCount} Lượt xem
+                        | {post.viewCount} View Count
                       </p>
-                      <span>{post.excerpt}</span>
+                      <span style={{ padding: "15px" }}>{post.excerpt}</span>
                       <div className="post-social d-flex justify-content-between">
                         <button
                           className="post-read-more"
@@ -125,7 +105,7 @@ const MyBlog = () => {
                         to={`/update-blog/${post.id}`}
                         className="btn btn-primary"
                       >
-                        <FaEdit/>
+                        <FaEdit />
                       </Link>
                       <button
                         className="btn btn-danger"

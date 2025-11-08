@@ -21,9 +21,9 @@
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
 }
 
-.list-comment .comment-details .user-comments img{
-   width: 30px;
-   height: auto;
+.list-comment .comment-details .user-comments img {
+  width: 30px;
+  height: auto;
 }
 
 .user-comment {
@@ -33,10 +33,25 @@
 }
 
 .user-comment img {
-    margin-bottom: 10px;
-  width: 32px;      /* 👈 giảm kích thước ảnh */
+  margin-bottom: 10px;
+  width: 32px; /* 👈 giảm kích thước ảnh */
   height: 32px;
   border-radius: 50%; /* bo tròn ảnh cho đẹp */
-  object-fit: cover;  /* giữ tỉ lệ ảnh */
+  object-fit: cover; /* giữ tỉ lệ ảnh */
   border: 1px solid #ccc; /* đường viền nhẹ */
+}
+.post-detail-display-comment h2 {
+  border-bottom: 1px solid grey;
+}
+
+.delete-comment {
+  border: none;
+  padding: 10px;
+  border-radius: 5px;
+  transition: background-color 0.5s ease;
+}
+
+.delete-comment:hover {
+  background-color: orange;
+  color: white;
 }

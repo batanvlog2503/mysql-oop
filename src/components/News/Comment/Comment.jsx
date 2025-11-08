@@ -1,10 +1,36 @@
 import React, { useState } from "react"
 import "./Comment.css"
+
 import image from "./Img/image.png"
-const Comment = ({ comment }) => {
+import axios from "axios"
+const Comment = ({ comment, postId }) => {
+  const user = JSON.parse(localStorage.getItem("loginUser"))
+
+  const handleDelete = async (commentId) => {
+    const token = localStorage.getItem("jwtToken")
+    console.log(user.data)
+    if (window.confirm("Bạn có chắc muốn xóa bình luận này không?")) {
+      try {
+        await axios.delete(
+          `http://localhost:8081/post/${postId}/comments/${commentId}`,
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        )
+        alert("Đã xóa bình luận!")
+        window.location.reload() // load lại trang hoặc bạn có thể filter state để không cần reload
+      } catch (error) {
+        alert(
+          "Không thể xóa bình luận này — bạn không có quyền hoặc lỗi server"
+        )
+        console.error(error)
+      }
+    }
+  }
   return (
     <div>
-      
       <div className="list-comment">
         <div className="post-detail-display-comment">
           <h2>Mới nhất</h2>
@@ -16,11 +42,28 @@ const Comment = ({ comment }) => {
                   className="comment-details"
                 >
                   <div className="user-comment">
-                    <img src={image} alt={image} />
-                    <strong>@{cmt?.displayName}:</strong>
+                    <img
+                      src={image}
+                      alt={image}
+                    />
+                    <strong>@{cmt.userDTO.displayName}:</strong>
                   </div>
                   <div className="user-content">
                     <p>{cmt?.contentComment}</p>
+
+                    {/* Hiện nút xóa nếu là người viết */}
+                    {user.username === cmt.userDTO.username && (
+                      <div className="d-flex justify-content-between">
+                        <div></div>
+                        <button
+                          className="delete-btn delete-comment"
+                          onClick={() => handleDelete(cmt.id)}
+
+                        >
+                          Xóa
+                        </button>
+                      </div>
+                    )}
                   </div>
                 </div>
               ))

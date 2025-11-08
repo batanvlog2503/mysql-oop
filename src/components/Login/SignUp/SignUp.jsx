@@ -29,6 +29,7 @@ const SignUp = () => {
       await axios.post("http://localhost:8081/api/auth/register", userToSave)
 
       console.log(userToSave)
+      localStorage.setItem("user1", JSON.stringify(userToSave))
       // Option 1: Reset form
       setUsers({
         username: "",
