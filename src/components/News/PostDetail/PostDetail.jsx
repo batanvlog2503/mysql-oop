@@ -48,10 +48,9 @@ const PostDetail = () => {
       },
     })
 
-    console.log(" Response status:", result.status)
     console.log(" Response Post Detail data:", result.data)
-    console.log(" Post title:", result.data.title)
-    console.log(" Author:", result.data.authorUser?.displayName)
+    // console.log(" Post title:", result.data.title)
+    // console.log(" Author:", result.data.authorUser?.displayName)
 
     if (result.status === 200) {
       setPostDetails(result.data)
@@ -114,12 +113,13 @@ const PostDetail = () => {
         <div className="row row-1">
           <div className="post-detail-title col-lg-8 col-xl-8 col-sm-12 col-12">
             <span>
-              Written by: {posts.authorName || "Unknown Author"} | Update on:{" "}
-              {new Date(posts.publishedAt).toLocaleDateString("vi-VN")}
+              Written by: {postDetails.authorName || "Unknown Author"} | Update
+              on:{" "}
+              {new Date(postDetails.publishedAt).toLocaleDateString("vi-VN")}
             </span>
 
-            <h1>{posts.title}</h1>
-            <h2>{posts.content}</h2>
+            <h1>{postDetails.title}</h1>
+            <h2>{postDetails.content}</h2>
           </div>
           <div className="post-detail-img col-lg-4 col-xl-4 col-sm-12 col-12">
             <img
@@ -138,7 +138,9 @@ const PostDetail = () => {
             </div>
             <div className="post-detail-content">
               <h3>Content</h3>
-              <p style={{ whiteSpace: "pre-line" }}>{postDetails.contentDetail}</p>
+              <p style={{ whiteSpace: "pre-line" }}>
+                {postDetails.contentDetail}
+              </p>
             </div>
             <div className="post-detail-end-content">
               <h3>In Short</h3>
@@ -198,29 +200,31 @@ const PostDetail = () => {
                 <div className="info-component col-xl-6 col-lg-6 col-md-12 col-12">
                   <h5>Publication Date</h5>
                   <span>
-                    {new Date(posts.publishedAt).toLocaleDateString("vi-VN")}
+                    {new Date(postDetails.publishedAt).toLocaleDateString(
+                      "vi-VN"
+                    )}
                   </span>
                 </div>
                 <div className="info-component col-xl-6 col-lg-6 col-md-12 col-12">
                   <h5>Category</h5>
-                  <span>{posts.categoryName}</span>
+                  <span>{postDetails.categoryName}</span>
                 </div>
 
                 <div className="info-component col-xl-6 col-lg-6 col-md-12 col-12">
                   <h5>Slug</h5>
-                  <span>{posts.slug}</span>
+                  <span>{postDetails.slug}</span>
                 </div>
 
                 <div className="info-component col-xl-6 col-lg-6 col-md-12 col-12">
                   <h5>Author Name</h5>
-                  <span>{posts.authorName || "Unknown Author"}</span>
+                  <span>{postDetails.authorName || "Unknown Author"}</span>
                 </div>
                 <div className="info-component">
                   <b style={{ color: "Orange" }}>Tags:&nbsp;</b>
                   <span style={{ color: "rgb(45, 44, 44)" }}>
                     {" "}
-                    {posts.tagDTOs &&
-                      posts.tagDTOs.map((tag) => tag.name).join(", ")}
+                    {postDetails.tagDTOs &&
+                      postDetails.tagDTOs.map((tag) => tag.name).join(", ")}
                   </span>
                 </div>
               </div>
