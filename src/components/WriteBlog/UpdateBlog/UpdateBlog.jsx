@@ -2,10 +2,9 @@ import React from "react"
 import { useNavigate, useParams } from "react-router-dom"
 import Navbar from "../../Navbar"
 import { useState, useEffect } from "react"
-
 import axios from "axios"
+
 const UpdateBlog = () => {
-  const [tagNameLists, setTagNameLists] = useState([])
   const navigate = useNavigate()
   const { id } = useParams()
   const [blog, setBlog] = useState({
@@ -19,8 +18,9 @@ const UpdateBlog = () => {
     img: "",
     link: "",
     categoryName: "",
-    tagNameList: "",
+    tagNameList: "", // String để hiển thị trong input
   })
+
   const {
     title,
     content,
@@ -32,66 +32,87 @@ const UpdateBlog = () => {
     img,
     link,
     categoryName,
-
     tagNameList,
   } = blog
+
   useEffect(() => {
     loadBlog()
   }, [])
+
   const loadBlog = async () => {
-    const result = await axios.get(`http://localhost:8081/post/detail/${id}`, {
-      validateStatus: () => {
-        return true
-      },
-      // headers: {
-      //   "Content-Type": "application/json",
-      //   Authorization: `Bearer ${token}`,
-      // },
-    })
-    if (result.status === 200) {
-      setBlog(result.data)
-      // Set tags từ data load về
-      if (result.data.tagNameList && Array.isArray(result.data.tagNameList)) {
-        setTagNameLists(result.data.tagNameList)
+    try {
+      const token = localStorage.getItem("jwtToken")
+      const result = await axios.get(
+        `http://localhost:8081/post/detail/${id}`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+          validateStatus: () => true,
+        }
+      )
+
+      if (result.status === 200) {
+        const data = result.data
+
+        // Convert tagDTOs array thành string
+        let tagsString = ""
+        if (data.tagDTOs && Array.isArray(data.tagDTOs)) {
+          tagsString = data.tagDTOs.map((tag) => tag.name).join(", ")
+        }
+
+        setBlog({
+          title: data.title || "",
+          content: data.content || "",
+          excerpt: data.excerpt || "",
+          slug: data.slug || "",
+          introduction: data.introduction || "",
+          contentDetail: data.contentDetail || "",
+          endContent: data.endContent || "",
+          img: data.img || "",
+          link: data.link || "",
+          categoryName: data.categoryName || "",
+          tagNameList: tagsString, // Set tags dưới dạng string
+        })
+
+        console.log("Blog loaded:", data)
+        console.log("Tags string:", tagsString)
+      } else {
+        alert("Failed to load blog")
       }
-    } else {
-      alert("Result failed")
+    } catch (error) {
+      console.error("Error loading blog:", error)
+      alert("Error loading blog")
     }
   }
+
   const handleInputChange = (e) => {
     setBlog({ ...blog, [e.target.name]: e.target.value })
-    // ví name = "firstName" = > firstName:"Jhon"
   }
 
   const updateBlog = async (e) => {
     e.preventDefault()
-    //Ngăn trình duyệt reload lại trang khi form được submit
+
     try {
       const token = localStorage.getItem("jwtToken")
-      await axios.put(`http://localhost:8081/post/update/${id}`, blog, {
+
+      // Prepare data - convert tagNameList string to array
+      const updateData = {
+        ...blog,
+        tagNameList: blog.tagNameList
+          .split(",")
+          .map((tag) => tag.trim())
+          .filter((tag) => tag !== ""),
+      }
+
+      await axios.put(`http://localhost:8081/post/update/${id}`, updateData, {
         headers: {
           "Content-Type": "application/json",
           Authorization: `Bearer ${token}`,
         },
       })
-      console.log("Token:", token) // Debug
-      console.log("Blog :", blog)
-      // Option 1: Reset form
-      setBlog({
-        title: "",
-        content: "",
-        excerpt: "",
-        slug: "",
-        introduction: "",
-        contentDetail: "",
-        endContent: "",
-        img: "",
-        link: "",
-        categoryName: "",
-        tagNameList: [],
-      })
-      // Option 2: Redirect
-      // navigate("/view-student")  // nếu dùng useNavigate()
+
+      console.log("Updated blog:", updateData)
       alert("Update Post Successfully!!!")
       navigate("/my-blog")
     } catch (error) {
@@ -99,6 +120,7 @@ const UpdateBlog = () => {
       alert("Update Post Failed. Please try again.")
     }
   }
+
   return (
     <div>
       <div
@@ -141,8 +163,6 @@ const UpdateBlog = () => {
                   name="title"
                   id="title"
                   placeholder="title"
-                  aria-label="title"
-                  aria-describedby="basic-addon1"
                   value={title}
                   onChange={(e) => handleInputChange(e)}
                   required
@@ -163,14 +183,13 @@ const UpdateBlog = () => {
                   name="content"
                   id="content"
                   placeholder="content"
-                  aria-label="content"
-                  aria-describedby="basic-addon1"
                   value={content}
                   onChange={(e) => handleInputChange(e)}
                   required
                   autoComplete="new-password"
                 />
               </div>
+
               <div className="input-group mb-3 excerpt-blog">
                 <label
                   htmlFor="excerpt"
@@ -182,14 +201,14 @@ const UpdateBlog = () => {
                   className="form-control"
                   name="excerpt"
                   id="excerpt"
-                  placeholder="Enter a short Exceprt"
-                  aria-label="excerpt"
+                  placeholder="Enter a short Excerpt"
                   value={excerpt}
                   onChange={(e) => handleInputChange(e)}
                   required
-                  rows={3} // hiển thị cao hơn input thường
+                  rows={3}
                 />
               </div>
+
               <div className="input-group mb-3 category-blog">
                 <label
                   htmlFor="categoryName"
@@ -197,18 +216,18 @@ const UpdateBlog = () => {
                 >
                   Category Name:
                 </label>
-                <textarea
+                <input
+                  type="text"
                   className="form-control"
                   name="categoryName"
                   id="categoryName"
                   placeholder="Enter a Category Name"
-                  aria-label="categoryName"
                   value={categoryName}
                   onChange={(e) => handleInputChange(e)}
                   required
-                  rows={1} // hiển thị cao hơn input thường
                 />
               </div>
+
               <div className="input-group mb-3 slug-blog">
                 <label
                   htmlFor="slug"
@@ -222,14 +241,13 @@ const UpdateBlog = () => {
                   name="slug"
                   id="slug"
                   placeholder="slug"
-                  aria-label="slug"
-                  aria-describedby="basic-addon1"
                   value={slug}
                   onChange={(e) => handleInputChange(e)}
                   required
                   autoComplete="new-password"
                 />
               </div>
+
               <div className="input-group mb-3 tag-name-list-blog">
                 <label
                   htmlFor="tagNameList"
@@ -242,24 +260,17 @@ const UpdateBlog = () => {
                   className="form-control"
                   name="tagNameList"
                   id="tagNameList"
-                  placeholder="Enter tags (press Enter to add)"
-                  //  value={tagNameList}
-                  onKeyDown={(e) => {
-                    if (e.key === "Enter") {
-                      e.preventDefault()
-                      const newTag = e.target.value.trim()
-                      if (newTag && !tagNameLists.includes(newTag)) {
-                        setTagNameLists([...tagNameLists, newTag])
-                      }
-                      e.target.value = ""
-                    }
-                  }}
+                  placeholder="Enter tags separated by commas (e.g: java, spring, tutorial)"
+                  value={tagNameList}
+                  onChange={(e) => handleInputChange(e)}
+                  required
+                  autoComplete="new-password"
                 />
               </div>
 
               <div className="input-group mb-3 introduction-blog">
                 <label
-                  htmlFor="introduction" // giới thiệu đầu bài
+                  htmlFor="introduction"
                   className="input-group-text"
                 >
                   Introduction:
@@ -268,14 +279,14 @@ const UpdateBlog = () => {
                   className="form-control"
                   name="introduction"
                   id="introduction"
-                  placeholder="Write an Introduction ... "
-                  aria-label="introduction"
+                  placeholder="Write an Introduction..."
                   value={introduction}
                   onChange={(e) => handleInputChange(e)}
                   required
-                  rows={5} // hiển thị cao hơn input thường
+                  rows={5}
                 />
               </div>
+
               <div className="input-group mb-3 content-detail-blog">
                 <label
                   htmlFor="contentDetail"
@@ -287,14 +298,14 @@ const UpdateBlog = () => {
                   className="form-control"
                   name="contentDetail"
                   id="contentDetail"
-                  placeholder="Write a content detail ..."
-                  aria-label="contentDetail"
+                  placeholder="Write a content detail..."
                   value={contentDetail}
                   onChange={(e) => handleInputChange(e)}
                   required
-                  rows={5} // hiển thị cao hơn input thường
+                  rows={10}
                 />
               </div>
+
               <div className="input-group mb-3 end-content-blog">
                 <label
                   htmlFor="endContent"
@@ -306,12 +317,11 @@ const UpdateBlog = () => {
                   className="form-control"
                   name="endContent"
                   id="endContent"
-                  placeholder="Write a end content  ..."
-                  aria-label="endContent"
+                  placeholder="Write a end content..."
                   value={endContent}
                   onChange={(e) => handleInputChange(e)}
                   required
-                  rows={5} // hiển thị cao hơn input thường
+                  rows={5}
                 />
               </div>
 
@@ -322,16 +332,15 @@ const UpdateBlog = () => {
                 >
                   Link Img:
                 </label>
-                <textarea
+                <input
+                  type="text"
                   className="form-control"
                   name="img"
                   id="img"
-                  placeholder="Attach photo here ..."
-                  aria-label="img"
+                  placeholder="Enter image URL"
                   value={img}
                   onChange={(e) => handleInputChange(e)}
                   required
-                  rows={1} // hiển thị cao hơn input thường
                 />
               </div>
 
@@ -346,12 +355,10 @@ const UpdateBlog = () => {
                   className="form-control"
                   name="link"
                   id="link"
-                  placeholder="Link Tham Khảo ..."
-                  aria-label="link"
+                  placeholder="Link Tham Khảo..."
                   value={link}
                   onChange={(e) => handleInputChange(e)}
-                  required
-                  rows={2} // hiển thị cao hơn input thường
+                  rows={2}
                 />
               </div>
 
