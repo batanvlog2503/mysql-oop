@@ -1,11 +1,7 @@
 .login {
-  background-image: url("src\\components\\Login\\ImgLogin\\background1.jpg");
+  background-color: white;
   height: 100vh;
   display: flex;
-
-  background-position: fixed;
-  background-repeat: no-repeat;
-  background-size: cover;
   flex-direction: column;
   justify-content: center;
 }
@@ -19,7 +15,7 @@
 }
 
 .launch p {
-  color: white;
+  color: black;
   font-size: 80px;
   font-family: Arial, Helvetica, sans-serif;
   font-weight: bold;
@@ -37,9 +33,9 @@
   height: 600px;
 
   background-color: transparent;
-  max-width: 500px; /* ✅ mở rộng form lớn hơn */
-  width: 90%; /* giữ responsive, tự co lại trên màn nhỏ */
-  padding: 60px 80px; /* ✅ tăng khoảng trống trong form */
+  max-width: 500px;
+  width: 90%;
+  padding: 60px 80px;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3); /* thêm đổ bóng cho nổi bật */
 }
 
@@ -57,21 +53,27 @@
 .wrapper .form-login .input-group label {
   padding: 15px;
   border: none;
+   
+}
+.wrapper .form-login .input-group{
+ box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
 }
 .wrapper .form-login .input-group input {
-  color: white;
+  color: black;
   font-weight: 500;
   background-color: transparent;
-  border: 2px solid rgba(255, 255, 255, 0.2);
+  
+ 
 }
 
 .wrapper .input-group input:focus {
-  color: white;
+  color: black;
   font-weight: 500;
 }
 .form-login .input-group {
   width: 100%;
   height: 50px;
+  
 }
 /* Khi màn hình nhỏ, giữ input full width */
 
@@ -86,10 +88,11 @@
   font-weight: 600;
   transition: background-color 0.5s ease-in-out;
   border: none;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
 }
 
 .button-submit button:hover {
-  background-color: rgba(0, 255, 255, 0.8);
+  background-color: orange;
   color: white;
   border: 1px solid orange;
 }
@@ -108,8 +111,24 @@
   font-size: 20px;
   font-weight: 600;
   text-decoration: none;
-  color: white;
+  color: black;
   background-color: transparent;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+  border: 1px solid grey;
+  padding: 5px;
+  transition: background-color 0.5s ease;
+}
+
+.register-link button:hover {
+  font-size: 20px;
+  font-weight: 600;
+  text-decoration: none;
+  color: white; 
+  background-color: orange;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+  border: none;
+  padding: 5px;
+  border-radius: 10px;
 }
 
 .button-submit {
@@ -127,12 +146,12 @@
 /* Hiệu ứng khi focus vào input */
 .wrapper .form-login .form-control:focus {
   background-color: rgba(255, 255, 255, 0.08); /* sáng hơn 1 chút khi focus */
-  border-color: rgba(0, 255, 255, 0.8); /* màu viền xanh lam nhạt */
-  box-shadow: 0 0 10px rgba(0, 255, 255, 0.6); /* ánh sáng tỏa ra ngoài */
+  border-color: orange ;/* màu viền xanh lam nhạt */
+  box-shadow: 0 0 10px orange; /* ánh sáng tỏa ra ngoài */
   outline: none;
 }
 
 /* Màu placeholder */
 .wrapper .form-login .form-control::placeholder {
-  color: rgba(255, 255, 255, 0.6);
+  color: grey;
 }

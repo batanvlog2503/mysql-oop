@@ -1,7 +1,7 @@
 /* === WriteBlog.css === */
 
 .write-blog-detail {
-  background: black;
+  background: white;
   min-height: 100vh;
   padding: 40px 0;
 }
@@ -44,7 +44,7 @@
 
 .write-blog-detail .form-control:focus,
 .form-select:focus {
-  border-color: #dc6424;
+  border-color: orange;
   box-shadow: 0 0 0 0.2rem rgba(233, 107, 24, 0.25);
 }
 

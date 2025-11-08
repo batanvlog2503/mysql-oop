@@ -52,8 +52,6 @@ ul li {
   border-radius: 2px;
 }
 
-
-
 /* hover hiện gạch chân */
 .list-page .link:hover {
   color: orange;
@@ -73,11 +71,7 @@ ul li {
   margin: 20px;
   border: 0;
 }
-.inner-contact button:hover {
-  background-color: white;
-  color: orange;
-  border: 1px solid orange;
-}
+
 .list-page button {
   padding: 10px;
   border-radius: 20px;
@@ -101,18 +95,23 @@ ul li {
 }
 
 .navbar .inner-contact .inner-display-name {
-  color: orange;
+  color: black;
   padding: 10px 0;
 }
 
 .navbar .inner-contact .inner-display-name h5 {
   position: absolute;
-  top: 15;
+  top: 70;
 }
 .navbar .inner-contact button {
   margin: 20px;
+  color: white;
 }
-
+.inner-contact button:hover {
+  background-color: white;
+  color: orange;
+  border: 1px solid orange;
+}
 .write-blog {
   font-size: 25px;
   font-weight: 600;

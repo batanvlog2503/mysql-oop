@@ -2,34 +2,52 @@ import React from "react"
 import "../Tag/Tag.css"
 import axios from "axios"
 import { useState, useEffect } from "react"
-import "./TagHome.css";
+import "./TagHome.css"
 const TagHome = () => {
   const [tags, setTags] = useState([])
 
-  const { name, slug } = tags
-//   useEffect(() => {
-//     loadTags()
-//   }, [])
-//   const loadTags = async () => {
-//     const result = await axios.get("http://localhost:8081/api/tags", {
-//       validateStatus: () => {
-//         return true
-//       },
-//     })
-//     if (result.status === 200) {
-//       setTags(result.data) // set data;
-//     } else {
-//       //alert("Tags data connected Failed") nhớ cho vào nhé
-//       console.log("Tag Failed")
-//     }
-//   }
-  return (
-   <div className="inner-tag-home">
-     <div className="inner-tags">
-      <h1>Tags</h1>
+  useEffect(() => {
+    loadTags()
+  }, [])
+  const loadTags = async () => {
+    const result = await axios.get("http://localhost:8081/tags", {
+      validateStatus: () => {
+        return true
+      },
+    })
+    console.log("tag data")
+    console.log(result.data)
+    if (result.status === 200) {
+      setTags(result.data) // set data;
+    } else {
+      //alert("Tags data connected Failed") nhớ cho vào nhé
+      console.log("Tag Failed")
+    }
+  }
 
-      <ul className="list-tags">
-        <li>HTML</li>
+  //   useEffect(() => {
+  //     loadTags()
+  //   }, [])
+  //   const loadTags = async () => {
+  //     const result = await axios.get("http://localhost:8081/api/tags", {
+  //       validateStatus: () => {
+  //         return true
+  //       },
+  //     })
+  //     if (result.status === 200) {
+  //       setTags(result.data) // set data;
+  //     } else {
+  //       //alert("Tags data connected Failed") nhớ cho vào nhé
+  //       console.log("Tag Failed")
+  //     }
+  //   }
+  return (
+    <div className="inner-tag-home">
+      <div className="inner-tags">
+        <h1>Tags</h1>
+
+        <ul className="list-tags">
+          {/* <li>HTML</li>
         <li>CSS</li>
         <li>C</li>
         <li>C++</li>
@@ -42,15 +60,25 @@ const TagHome = () => {
         <li>JavaScript</li>
         <li>PHP</li>
         <li>MySQl</li>
-        <li>React</li>
-      </ul>
+        <li>React</li> */}
+
+          {tags.map((tag, index) => (
+            <li
+              key={index}
+              className="tag-detail"
+            >
+              {tag.slug.charAt(0).toUpperCase() + tag.slug.slice(1)}
+            </li>
+          ))}
+        </ul>
+      </div>
     </div>
-   </div>
   )
 }
-{/* <Tag onTagSelect={(selectedTag) => setSearch(selectedTag)} /> */} // lọc theo Tag
+{
+  /* <Tag onTagSelect={(selectedTag) => setSearch(selectedTag)} /> */
+} // lọc theo Tag
 export default TagHome
-
 
 //  {tags.map((tag, index) => (
 //           <li key={tag.id}>{tag.name}</li>

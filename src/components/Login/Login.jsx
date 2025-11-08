@@ -117,7 +117,9 @@ const Login = () => {
             className="title-login text-center"
             style={{ padding: "30px" }}
           >
-            <h1 style={{ fontSize: "50px", color: "White", fontWeight: "700" }}>
+            <h1
+              style={{ fontSize: "50px", color: "Black", fontWeight: "700" }}
+            >
               Login
             </h1>
           </div>

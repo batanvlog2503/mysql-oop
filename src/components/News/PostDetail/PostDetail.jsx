@@ -49,7 +49,7 @@ const PostDetail = () => {
     })
 
     console.log(" Response status:", result.status)
-    console.log(" Response data:", result.data)
+    console.log(" Response Post Detail data:", result.data)
     console.log(" Post title:", result.data.title)
     console.log(" Author:", result.data.authorUser?.displayName)
 
@@ -58,7 +58,7 @@ const PostDetail = () => {
       // Set comments từ response
 
       console.log("PostDetail data load successfully")
-      console.log("data of PostDetails" + result.data)
+      console.log(result.data)
     } else {
       alert("Post Details Failed")
     }
@@ -119,6 +119,7 @@ const PostDetail = () => {
             </span>
 
             <h1>{posts.title}</h1>
+            <h2>{posts.content}</h2>
           </div>
           <div className="post-detail-img col-lg-4 col-xl-4 col-sm-12 col-12">
             <img
@@ -137,9 +138,7 @@ const PostDetail = () => {
             </div>
             <div className="post-detail-content">
               <h3>Content</h3>
-              <p style={{ whiteSpace: "pre-line" }}>
-                {postDetails.contentDetail}
-              </p>
+              <p style={{ whiteSpace: "pre-line" }}>{postDetails.contentDetail}</p>
             </div>
             <div className="post-detail-end-content">
               <h3>In Short</h3>

@@ -143,13 +143,13 @@ const WriteBlog = () => {
                   htmlFor="excerpt"
                   className="input-group-text"
                 >
-                  Excerpt
+                  Except
                 </label>
                 <textarea
                   className="form-control"
                   name="excerpt"
                   id="excerpt"
-                  placeholder="Enter a short Exceprt"
+                  placeholder="Enter a short Except"
                   aria-label="excerpt"
                   value={excerpt}
                   onChange={(e) => handleInputChange(e)}

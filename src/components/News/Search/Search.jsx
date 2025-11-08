@@ -1,13 +1,19 @@
 import React from "react"
 import "./Search.css"
-function Search({ search, setSearch }) {
+function Search({ search, setSearch, onSearch }) {
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    if (onSearch) {
+      onSearch(search) // Gọi hàm tìm kiếm từ parent component
+    }
+  }
   return (
     <div className="container search">
       <div className="row inner-search">
         <div className="inner-wrap-search col-xl-8 col-lg-8 col-sm-12 col-12">
           <form
             className="form-search"
-            onSubmit={(e) => e.preventDefault()}
+            onSubmit={handleSubmit}
           >
             <div className="search-box">
               <input
@@ -18,7 +24,7 @@ function Search({ search, setSearch }) {
                 onChange={(e) => setSearch(e.target.value)}
               />
               <button type="submit">
-                <i class="fa-solid fa-magnifying-glass"></i>
+                <i className="fa-solid fa-magnifying-glass"></i>
               </button>
             </div>
           </form>
