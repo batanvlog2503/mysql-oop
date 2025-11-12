@@ -199,32 +199,7 @@ const WriteBlog = () => {
                   autoComplete="new-password"
                 />
               </div>
-              {/* <div className="input-group mb-3 tag-name-list-blog">
-                <label
-                  htmlFor="tagNameList"
-                  className="input-group-text"
-                >
-                  Tags:
-                </label>
-                <input
-                  type="text"
-                  className="form-control"
-                  name="tagNameList"
-                  id="tagNameList"
-                  placeholder="Enter tags (press Enter to add)"
-                  onKeyDown={(e) => {
-                    if (e.key === "Enter") {
-                      e.preventDefault()
-                      const newTag = e.target.value.trim()
-                      if (newTag && !tagNameLists.includes(newTag)) {
-                        setTagNameLists([...tagNameLists, newTag])
-                      }
-                      e.target.value = ""
-                    }
-                  }}
-                  required
-                />
-              </div> */}
+            
               <div className="input-group mb-3 tag-name-list-blog">
                 <label
                   htmlFor="tagNameList"

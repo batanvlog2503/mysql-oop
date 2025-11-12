@@ -8,10 +8,10 @@
   padding: 30px;
 }
 .post-detail-img img {
-  width: 80%; 
+  width: 80%;
   height: auto;
   max-height: 350px;
-  object-fit: contain; 
+  object-fit: contain;
   border-radius: 30px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   overflow: hidden;
@@ -129,8 +129,6 @@
   padding: 0;
   text-align: center;
   padding: 12px;
-  
-  
 }
 
 .info-component h5 {
@@ -138,7 +136,6 @@
 }
 .info-component span {
   color: rgb(45, 44, 44);
-  
 }
 .post-detail-info {
   border-bottom: 1px solid grey;
@@ -207,12 +204,23 @@
   box-shadow: 0 0 4px rgba(0, 123, 255, 0.3);
 }
 
-.button-submit-comment{
+.button-submit-comment {
   margin: 15px;
   padding: 15px;
   font-size: 20px;
-  border-radius:10px;
-
+  border-radius: 10px;
 }
 
+.post-detail-link {
+  margin-top: 20px;
+  word-wrap: break-word; /* Cho phép tự ngắt khi URL dài */
+  overflow-wrap: break-word;
+  width: 100%; /* Không vượt khung cột */
+}
 
+.post-detail-link li {
+  margin-bottom: 8px;
+  line-height: 1.4;
+  word-break: break-all; /* Ngắt dòng nếu URL quá dài */
+  white-space: normal;
+}

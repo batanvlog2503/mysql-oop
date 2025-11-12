@@ -151,7 +151,7 @@ const PostDetail = () => {
             </div>
             <div className="post-detail-link">
               <h3>Source Tham Khảo: </h3>
-              <ul className="row ">
+              <ul>
                 {postDetails.link &&
                   postDetails.link
                     .split(",") // tách chuỗi theo dấu phẩy

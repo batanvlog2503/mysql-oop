@@ -15,7 +15,7 @@ const Navbar = () => {
     <div
       className="navbar navbar-expand-lg"
       style={{
-        backgroundColor: "black",
+        backgroundColor: "White",
         minHeight: "10vh",
         borderBottom: "1px solid grey",
       }}
@@ -59,7 +59,7 @@ const Navbar = () => {
                 >
                   {" "}
                   My Blog
-                </Link> 
+                </Link>
               </li>
               <li>
                 <Link
@@ -85,7 +85,6 @@ const Navbar = () => {
           </div>
         </div>
       </div>
-      
     </div>
   )
 }

@@ -95,7 +95,9 @@ const UpdateBlog = () => {
 
     try {
       const token = localStorage.getItem("jwtToken")
-
+      const {
+    title,content, excerpt,slug, introduction, contentDetail, endContent, img,link, categoryName,tagNameList
+  } = blog
       // Prepare data - convert tagNameList string to array
       const updateData = {
         ...blog,

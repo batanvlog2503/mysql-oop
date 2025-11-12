@@ -77,10 +77,10 @@
 }
 /* Khi màn hình nhỏ, giữ input full width */
 
-.button-submit {
+.wrapper .button-submit {
   width: 100%;
 }
-.button-submit button {
+.wrapper .button-submit button {
   padding: 12px;
   border-radius: 25px;
   background-color: white;
@@ -115,6 +115,7 @@
   background-color: transparent;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
   border: 1px solid grey;
+  border-radius: 10px;
   padding: 5px;
   transition: background-color 0.5s ease;
 }
