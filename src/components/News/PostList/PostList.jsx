@@ -1,13 +1,5 @@
 import React, { useState, useEffect } from "react"
 import axios from "axios"
-import postcard1 from "./ImgPostList/postcard1.jpg"
-import postcard2 from "./ImgPostList/postcard2.jpg"
-import postcard3 from "./ImgPostList/postcard3.jpg"
-import postcard4 from "./ImgPostList/postcard4.jpg"
-import postcard5 from "./ImgPostList/postcard5.jpg"
-import postcard6 from "./ImgPostList/postcard6.jpg"
-import postcard7 from "./ImgPostList/postcard7.jpg"
-import postcard8 from "./ImgPostList/postcard8.jpg"
 import "./PostList.css"
 import { useNavigate } from "react-router-dom"
 import Search from "../Search/Search"
@@ -18,23 +10,12 @@ const PostList = () => {
   const [search, setSearch] = useState("")
   const [posts, setPosts] = useState([])
   const [filteredPosts, setFilteredPosts] = useState([])
-
-  const postcard = [
-    postcard1,
-    postcard2,
-    postcard3,
-    postcard4,
-    postcard5,
-    postcard6,
-    postcard7,
-    postcard8,
-  ]
-
   useEffect(() => {
     loadPosts()
   }, [])
 
   const loadPosts = async () => {
+    // hieenjj tất cả cá p
     const result = await axios.get("http://localhost:8081/posts", {
       validateStatus: () => true,
     })
@@ -124,7 +105,9 @@ const PostList = () => {
                   Author Name: {post.authorName} | Publish At:{" "}
                   {new Date(post.publishedAt).toLocaleDateString("vi-VN")}
                 </p>
+                {/* displayName */}
                 <span>{post.excerpt}</span>
+                {/* tóm tắt bên ngoài */}
                 <button
                   className="post-read-more"
                   onClick={() => navigate(`/view-blogs/${post.id}`)}

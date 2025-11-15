@@ -12,7 +12,7 @@ const Introduction = () => {
     loadTags()
   }, [])
   const loadTags = async () => {
-    const result = await axios.get("http://localhost:8080/api/tags", {
+    const result = await axios.get("http://localhost:8081/tags", {
       validateStatus: () => {
         return true
       },

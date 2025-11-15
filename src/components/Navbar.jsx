@@ -9,8 +9,9 @@ const Navbar = () => {
   const navigate = useNavigate()
   const handleLogout = () => {
     setUser(null)
-    navigate("/")
+    navigate("/signup")
   }
+  
   return (
     <div
       className="navbar navbar-expand-lg"
@@ -76,6 +77,7 @@ const Navbar = () => {
             <div>
               <h5 className="inner-display-name">Chào Bạn! {user.username}</h5>
             </div>
+
             <button
               className="log-out"
               onClick={handleLogout}

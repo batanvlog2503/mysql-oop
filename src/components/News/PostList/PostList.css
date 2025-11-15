@@ -64,7 +64,7 @@
   margin-bottom: 15px;
 }
 
-/* ✅ Nút Read More cố định ở góc trái dưới */
+/*  Nút Read More cố định ở góc trái dưới */
 .post-list .post-read-more {
   position: absolute;
   bottom: 15px;

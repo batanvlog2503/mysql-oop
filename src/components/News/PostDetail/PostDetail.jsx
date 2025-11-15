@@ -57,7 +57,7 @@ const PostDetail = () => {
       // Set comments từ response
 
       console.log("PostDetail data load successfully")
-      console.log(result.data)
+      console.log("PostDetails data ", result.data)
     } else {
       alert("Post Details Failed")
     }
@@ -175,26 +175,6 @@ const PostDetail = () => {
           </div>
 
           <div className="post-detail-table-content col-lg-4 col-xl-4 col-sm-12 col-12">
-            <div className="post-detail-table-content-social">
-              <span
-                onClick={() => handleClick(1)}
-                className={active === 1 ? "active1" : ""}
-              >
-                <i className="fa-brands fa-gratipay"></i> 38.5k
-              </span>
-              <span
-                onClick={() => handleClick(2)}
-                className={active === 2 ? "active2" : ""}
-              >
-                <i className="fa-solid fa-eye"></i> 382
-              </span>
-              <span
-                onClick={() => handleClick(3)}
-                className={active === 3 ? "active3" : ""}
-              >
-                <i className="fa-brands fa-telegram"></i> 78
-              </span>
-            </div>
             <div className="post-detail-info">
               <div className="row">
                 <div className="info-component col-xl-6 col-lg-6 col-md-12 col-12">

@@ -35,6 +35,20 @@ const UpdateBlog = () => {
     tagNameList,
   } = blog
 
+  const [blogOrigin, setBlogOrigin] = useState({
+    title: "",
+    content: "",
+    excerpt: "",
+    slug: "",
+    introduction: "",
+    contentDetail: "",
+    endContent: "",
+    img: "",
+    link: "",
+    categoryName: "",
+    tagNameList: "", // String để hiển thị trong input
+  })
+
   useEffect(() => {
     loadBlog()
   }, [])
@@ -74,6 +88,19 @@ const UpdateBlog = () => {
           categoryName: data.categoryName || "",
           tagNameList: tagsString, // Set tags dưới dạng string
         })
+        setBlogOrigin({
+          title: data.title || "",
+          content: data.content || "",
+          excerpt: data.excerpt || "",
+          slug: data.slug || "",
+          introduction: data.introduction || "",
+          contentDetail: data.contentDetail || "",
+          endContent: data.endContent || "",
+          img: data.img || "",
+          link: data.link || "",
+          categoryName: data.categoryName || "",
+          tagNameList: tagsString, // Set tags dưới dạng string
+        })
 
         console.log("Blog loaded:", data)
         console.log("Tags string:", tagsString)
@@ -95,9 +122,7 @@ const UpdateBlog = () => {
 
     try {
       const token = localStorage.getItem("jwtToken")
-      const {
-    title,content, excerpt,slug, introduction, contentDetail, endContent, img,link, categoryName,tagNameList
-  } = blog
+
       // Prepare data - convert tagNameList string to array
       const updateData = {
         ...blog,
@@ -114,9 +139,16 @@ const UpdateBlog = () => {
         },
       })
 
-      console.log("Updated blog:", updateData)
-      alert("Update Post Successfully!!!")
-      navigate("/my-blog")
+      if (
+        updateData.title !== blogOrigin.title ||
+        updateData.content !== blogOrigin.content
+      ) {
+        console.log("Updated blog:", updateData)
+        alert("Update Post Successfully!!!")
+        navigate("/my-blog")
+      } else {
+        navigate(`/update-blog/${id}`)
+      }
     } catch (error) {
       console.error("Update Post failed", error)
       alert("Update Post Failed. Please try again.")
