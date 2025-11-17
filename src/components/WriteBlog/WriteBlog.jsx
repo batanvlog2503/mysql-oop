@@ -5,6 +5,7 @@ import { Outlet, useNavigate, useParams } from "react-router-dom"
 import axios from "axios"
 // import NavbarLogin from "./NavbarLogin"
 import { useState, useEffect } from "react"
+import api from "../../services/apiService"
 const WriteBlog = () => {
   const navigate = useNavigate()
   const [tagNameLists, setTagNameLists] = useState([])
@@ -45,7 +46,7 @@ const WriteBlog = () => {
   const saveBlog = async (e) => {
     e.preventDefault()
     try {
-      const token = localStorage.getItem("jwtToken")
+      const token = localStorage.getItem("token")
       const loadBlog = {
         ...blog,
         tagNameList: blog.tagNameList
@@ -53,12 +54,14 @@ const WriteBlog = () => {
           .map((tag) => tag.trim())
           .filter((tag) => tag !== ""),
       }
-      await axios.post("http://localhost:8081/post/create", loadBlog, {
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
-        },
-      })
+      // await axios.post("http://localhost:8081/post/create", loadBlog, {
+      //   headers: {
+      //     "Content-Type": "application/json",
+      //     Authorization: `Bearer ${token}`,
+      //   },
+      // })
+      const result = await api.createPost(loadBlog);
+      console.log(result);
       console.log(loadBlog)
       alert(" Post Created Successfully")
       navigate("/view-blogs")

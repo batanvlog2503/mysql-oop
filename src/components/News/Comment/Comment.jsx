@@ -3,6 +3,7 @@ import "./Comment.css"
 
 import image from "./Img/image.png"
 import axios from "axios"
+import api from "../../../services/apiService"
 const Comment = ({ comment, postId }) => {
   const user = JSON.parse(localStorage.getItem("loginUser"))
 
@@ -11,14 +12,15 @@ const Comment = ({ comment, postId }) => {
     console.log(user.data)
     if (window.confirm("Bạn có chắc muốn xóa bình luận này không?")) {
       try {
-        await axios.delete(
-          `http://localhost:8081/post/${postId}/comments/${commentId}`,
-          {
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
-          }
-        )
+        // await axios.delete(
+        //   `http://localhost:8081/post/${postId}/comments/${commentId}`,
+        //   {
+        //     headers: {
+        //       Authorization: `Bearer ${token}`,
+        //     },
+        //   }
+        // )
+        const result = await api.deleteComment(postId, commentId)
         alert("Đã xóa bình luận!")
         window.location.reload() // load lại trang hoặc bạn có thể filter state để không cần reload
       } catch (error) {

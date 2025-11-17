@@ -3,6 +3,7 @@ import { useNavigate, useParams } from "react-router-dom"
 import Navbar from "../../Navbar"
 import { useState, useEffect } from "react"
 import axios from "axios"
+import api from "../../../services/apiService"
 
 const UpdateBlog = () => {
   const navigate = useNavigate()
@@ -121,7 +122,7 @@ const UpdateBlog = () => {
     e.preventDefault()
 
     try {
-      const token = localStorage.getItem("jwtToken")
+      const token = localStorage.getItem("token")
 
       // Prepare data - convert tagNameList string to array
       const updateData = {
@@ -132,13 +133,13 @@ const UpdateBlog = () => {
           .filter((tag) => tag !== ""),
       }
 
-      await axios.put(`http://localhost:8081/post/update/${id}`, updateData, {
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
-        },
-      })
-
+      // await axios.put(`http://localhost:8081/post/update/${id}`, updateData, {
+      //   headers: {
+      //     "Content-Type": "application/json",
+      //     Authorization: `Bearer ${token}`,
+      //   },
+      // })
+      const result = await api.updatePost(id, updateData)
       if (
         updateData.title !== blogOrigin.title ||
         updateData.content !== blogOrigin.content

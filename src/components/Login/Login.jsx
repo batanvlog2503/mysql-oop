@@ -45,19 +45,16 @@ const Login = () => {
       }
 
       // Gọi API login tới backend
-      const response = await axios.post(
-        "http://localhost:8081/api/auth/login",
-        loginData
-      )
-
+      const response = await api.login(loginData);
+      
       if (response.status === 200) {
-        const token = response.data.token // backend trả về AuthResponse(token)
+       
 
         //  Lưu token vào localStorage để dùng cho các request sau
-        localStorage.setItem("jwtToken", token)
+        localStorage.setItem("token", response.token)
         //localStorage.setItem("username", loginData.username)
-        console.log("JWT Token:", token)
-        console.log("Login response:", response.data)
+        console.log("JWT Token:", response.token)
+        console.log("Login response:", loginData.data)
         // Nếu có context user, set lại user
         setUser({ username: users.username, password: users.password })
         localStorage.setItem("loginUser", JSON.stringify(users))
