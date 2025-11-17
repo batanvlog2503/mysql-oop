@@ -28,8 +28,8 @@ const SignUp = () => {
 
     try {
       // await axios.post("https://backend-blog-production-c415.up.railway.app/api/auth/register", userToSave)
-      await api.post("/api/auth/register", userToSave)
-
+     // await api.post("/api/auth/register", userToSave)
+      await api.register(userToSave)
       //console.log("user", result.data)
       console.log(userToSave)
       localStorage.setItem("user1", JSON.stringify(userToSave))
