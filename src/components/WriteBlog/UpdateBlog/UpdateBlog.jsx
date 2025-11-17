@@ -133,23 +133,21 @@ const UpdateBlog = () => {
           .filter((tag) => tag !== ""),
       }
 
-      await axios.put(`https://backend-blog-production-c415.up.railway.app/post/update/${id}`, updateData, {
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
-        },
-      })
+      await axios.put(
+        `https://backend-blog-production-c415.up.railway.app/post/update/${id}`,
+        updateData,
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      )
       //const result = await api.updatePost(id, updateData)
-      if (
-        updateData.title !== blogOrigin.title ||
-        updateData.content !== blogOrigin.content
-      ) {
-        console.log("Updated blog:", updateData)
-        alert("Update Post Successfully!!!")
-        navigate("/my-blog")
-      } else {
-        navigate(`/update-blog/${id}`)
-      }
+
+      console.log("Updated blog:", updateData)
+      alert("Update Post Successfully!!!")
+      navigate("/my-blog")
     } catch (error) {
       console.error("Update Post failed", error)
       alert("Update Post Failed. Please try again.")
