@@ -27,8 +27,8 @@ const SignUp = () => {
     const userToSave = { ...users, createdAt: now }
 
     try {
-      await axios.post("https://backend-blog-production-c415.up.railway.app/api/auth/register", userToSave)
-      // const result = await api.post("/api/auth/register", userToSave)
+      // await axios.post("https://backend-blog-production-c415.up.railway.app/api/auth/register", userToSave)
+      await api.post("/api/auth/register", userToSave)
 
       //console.log("user", result.data)
       console.log(userToSave)

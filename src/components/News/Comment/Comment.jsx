@@ -12,15 +12,15 @@ const Comment = ({ comment, postId }) => {
     console.log(user.data)
     if (window.confirm("Bạn có chắc muốn xóa bình luận này không?")) {
       try {
-        await axios.delete(
-          `https://backend-blog-production-c415.up.railway.app/${postId}/comments/${commentId}`,
-          {
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
-          }
-        )
-      
+        // await axios.delete(
+        //   `https://backend-blog-production-c415.up.railway.app/${postId}/comments/${commentId}`,
+        //   {
+        //     headers: {
+        //       Authorization: `Bearer ${token}`,
+        //     },
+        //   }
+        // )
+        await api.deleteComment(postId, commentId)
         alert("Đã xóa bình luận!")
         window.location.reload() // load lại trang hoặc bạn có thể filter state để không cần reload
       } catch (error) {
@@ -60,7 +60,6 @@ const Comment = ({ comment, postId }) => {
                         <button
                           className="delete-btn delete-comment"
                           onClick={() => handleDelete(cmt.id)}
-
                         >
                           Xóa
                         </button>

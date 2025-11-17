@@ -2,6 +2,7 @@ import React from "react"
 import "../Tag/Tag.css"
 import axios from "axios"
 import { useState, useEffect } from "react"
+import api from "../../../services/apiService"
 
 const Tag = ({ onTagSelect }) => {
   const [tags, setTags] = useState([])
@@ -12,10 +13,10 @@ const Tag = ({ onTagSelect }) => {
   }, [])
 
   const loadTags = async () => {
-    const result = await axios.get("https://backend-blog-production-c415.up.railway.app/tags", {
-      validateStatus: () => true,
-    })
-
+    // const result = await axios.get("https://backend-blog-production-c415.up.railway.app/tags", {
+    //   validateStatus: () => true,
+    // })
+    const result = await api.getTags()
     if (result.status === 200) {
       setTags(result.data)
     } else {

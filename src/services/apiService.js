@@ -9,7 +9,6 @@ import { API_BASE_URL } from "../config/api"
 export const apiRequest = async (endpoint, options = {}) => {
   const url = `${API_BASE_URL}${endpoint}`
 
-  // Default config
   const config = {
     headers: {
       "Content-Type": "application/json",
@@ -18,31 +17,37 @@ export const apiRequest = async (endpoint, options = {}) => {
     ...options,
   }
 
-  // Nếu có token, thêm vào header
-  const token = localStorage.getItem("token")
+  const token = localStorage.getItem("jwtToken") // ← Đổi từ "token" thành "jwtToken"
   if (token) {
     config.headers["Authorization"] = `Bearer ${token}`
   }
 
   try {
     const response = await fetch(url, config)
+    const data = await response.json().catch(() => null)
 
-    // Handle HTTP errors
-    if (!response.ok) {
-      const errorData = await response.json().catch(() => ({}))
-      throw new Error(
-        errorData.message || `HTTP error! status: ${response.status}`
-      )
+    //  Trả về format giống axios
+    return {
+      data: data,
+      status: response.status,
+      ok: response.ok,
     }
-
-    // Parse JSON response
-    return await response.json()
   } catch (error) {
     console.error("API request failed:", error)
-    throw error
+    // Trả về format lỗi
+    return {
+      data: null,
+      status: 0,
+      ok: false,
+      error: error.message,
+    }
   }
 }
 
+// const result = await api.getPostById(id)
+// if (result.status === 200) {
+//   setPosts(result.data) // ← Giờ có .data rồi
+// }
 /**
  * API Service - Chứa tất cả các API calls
  */
@@ -118,6 +123,8 @@ export const api = {
 
   // Lọc posts theo tag slug
   filterPostsByTag: (tagSlug) => apiRequest(`/tag/search?slug=${tagSlug}`),
+
+  getTags: () => apiRequest("/tags"),
 }
 
 export default api

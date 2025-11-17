@@ -133,19 +133,19 @@ const UpdateBlog = () => {
           .filter((tag) => tag !== ""),
       }
 
-      await axios.put(
-        `https://backend-blog-production-c415.up.railway.app/post/update/${id}`,
-        updateData,
-        {
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      )
-      //const result = await api.updatePost(id, updateData)
+      // await axios.put(
+      //   `https://backend-blog-production-c415.up.railway.app/post/update/${id}`,
+      //   updateData,
+      //   {
+      //     headers: {
+      //       "Content-Type": "application/json",
+      //       Authorization: `Bearer ${token}`,
+      //     },
+      //   }
+      // )
+      const result = await api.updatePost(id, updateData)
 
-      console.log("Updated blog:", updateData)
+      console.log("Updated blog:", result.data)
       alert("Update Post Successfully!!!")
       navigate("/my-blog")
     } catch (error) {

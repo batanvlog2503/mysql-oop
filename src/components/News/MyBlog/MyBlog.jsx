@@ -7,6 +7,7 @@ import { useState } from "react"
 import { useNavigate } from "react-router-dom"
 import { Link } from "react-router-dom"
 import Img from "../../Home/img/Img"
+import api from "../../../services/apiService"
 
 const MyBlog = () => {
   const [posts, setPosts] = useState([])
@@ -19,15 +20,15 @@ const MyBlog = () => {
     const token = localStorage.getItem("jwtToken")
     //const username = localStorage.getItem("username");
     console.log(token)
-    const result = await axios.get("https://backend-blog-production-c415.up.railway.app/post/myblog", {
-      validateStatus: () => {
-        return true
-      },
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    })
-
+    // const result = await axios.get("https://backend-blog-production-c415.up.railway.app/post/myblog", {
+    //   validateStatus: () => {
+    //     return true
+    //   },
+    //   headers: {
+    //     Authorization: `Bearer ${token}`,
+    //   },
+    // })
+    const result = await api.getMyBlog()
     console.log(result.data)
     console.log(localStorage.getItem("jwtToken"))
 
@@ -48,12 +49,13 @@ const MyBlog = () => {
 
     try {
       const token = localStorage.getItem("jwtToken")
-      await axios.delete(`https://backend-blog-production-c415.up.railway.app/post/delete/${id}`, {
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
-        },
-      })
+      // await axios.delete(`https://backend-blog-production-c415.up.railway.app/post/delete/${id}`, {
+      //   headers: {
+      //     "Content-Type": "application/json",
+      //     Authorization: `Bearer ${token}`,
+      //   },
+      // })
+      await api.deletePost(id)
       alert("Xóa bài viết thành công!")
       loadPosts() // load lại danh sách
     } catch (error) {

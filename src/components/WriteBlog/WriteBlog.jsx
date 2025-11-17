@@ -54,20 +54,20 @@ const WriteBlog = () => {
           .map((tag) => tag.trim())
           .filter((tag) => tag !== ""),
       }
-      await axios.post("https://backend-blog-production-c415.up.railway.app/post/create", loadBlog, {
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
-        },
-      })
-      // const result = await api.createPost(loadBlog);
-     // console.log(result);
+      // await axios.post("https://backend-blog-production-c415.up.railway.app/post/create", loadBlog, {
+      //   headers: {
+      //     "Content-Type": "application/json",
+      //     Authorization: `Bearer ${token}`,
+      //   },
+      // })
+      const result = await api.createPost(loadBlog)
+
       console.log(loadBlog)
       alert(" Post Created Successfully")
       navigate("/view-blogs")
     } catch (error) {
       alert(" Post Failed")
-      
+
       console.error("Error:", error)
     }
   }

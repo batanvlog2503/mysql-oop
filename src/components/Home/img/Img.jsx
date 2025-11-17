@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react"
 import axios from "axios"
+import api from "../../../services/apiService"
 // import defaultImg from "../../assets/default-image.jpg" // nếu bạn muốn dùng ảnh mặc định thay vì placeholder
 
 const Img = ({ id, alt, className }) => {
@@ -18,13 +19,14 @@ const Img = ({ id, alt, className }) => {
   const loadPostDetails = async () => {
     try {
       const token = localStorage.getItem("jwtToken")
-      const result = await axios.get(
-        `https://backend-blog-production-c415.up.railway.app/post/detail/${id}`,
-        {
-          headers: { Authorization: `Bearer ${token}` },
-          validateStatus: () => true,
-        }
-      )
+      // const result = await axios.get(
+      //   `https://backend-blog-production-c415.up.railway.app/post/detail/${id}`,
+      //   {
+      //     headers: { Authorization: `Bearer ${token}` },
+      //     validateStatus: () => true,
+      //   }
+      // )
+      const result = await api.getPostDetailById(id)
       if (result.status === 200) {
         setPostDetails(result.data)
         setImgUrl(result.data.img)
@@ -50,7 +52,6 @@ const Img = ({ id, alt, className }) => {
           src={imgUrl}
           alt={alt || postDetails.title || "Post image"}
           onError={handleImgError}
-          
         />
       ) : (
         <div

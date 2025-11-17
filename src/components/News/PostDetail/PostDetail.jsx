@@ -39,19 +39,15 @@ const PostDetail = () => {
   }
   const loadPostDetails = async () => {
     const token = localStorage.getItem("jwtToken")
-    const result = await axios.get(
-      `https://backend-blog-production-c415.up.railway.app/post/detail/${id}`,
-      {
-        validateStatus: () => {
-          return true
-        },
-      }
-    )
-
-    console.log(" Response Post Detail data:", result.data)
-    // console.log(" Post title:", result.data.title)
-    // console.log(" Author:", result.data.authorUser?.displayName)
-
+    // const result = await axios.get(
+    //   `https://backend-blog-production-c415.up.railway.app/post/detail/${id}`,
+    //   {
+    //     validateStatus: () => {
+    //       return true
+    //     },
+    //   }
+    // )
+    const result = await api.getPostDetailById(id)
     if (result.status === 200) {
       setPostDetails(result.data)
       // Set comments từ response
@@ -64,14 +60,15 @@ const PostDetail = () => {
   }
 
   const loadPosts = async () => {
-    const result = await axios.get(
-      `https://backend-blog-production-c415.up.railway.app/post/${id}`,
-      {
-        validateStatus: () => {
-          return true
-        },
-      }
-    )
+    // const result = await axios.get(
+    //   `https://backend-blog-production-c415.up.railway.app/post/${id}`,
+    //   {
+    //     validateStatus: () => {
+    //       return true
+    //     },
+    //   }
+    // )
+    const result = await api.getPostById(id)
     if (result.status === 200) {
       setPosts(result.data)
       console.log("Post data load Successfully")
@@ -95,17 +92,17 @@ const PostDetail = () => {
     e.preventDefault()
     try {
       const token = localStorage.getItem("jwtToken")
-      await axios.post(
-        `https://backend-blog-production-c415.up.railway.app/post/${id}/comment`,
-        newComment,
-        {
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      )
-
+      // await axios.post(
+      //   `https://backend-blog-production-c415.up.railway.app/post/${id}/comment`,
+      //   newComment,
+      //   {
+      //     headers: {
+      //       "Content-Type": "application/json",
+      //       Authorization: `Bearer ${token}`,
+      //     },
+      //   }
+      // )
+      await api.createComment(id, newComment)
       alert("Comment added successfully!")
       setNewComment({ content: "" })
       //loadComments() // load lại danh sách

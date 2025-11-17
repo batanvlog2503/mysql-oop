@@ -16,12 +16,13 @@ const PostList = () => {
   }, [])
 
   const loadPosts = async () => {
-  
-    const result = await axios.get("https://backend-blog-production-c415.up.railway.app/posts", {
-      validateStatus: () => true,
-    })
-
-
+    // const result = await axios.get(
+    //   "https://backend-blog-production-c415.up.railway.app/posts",
+    //   {
+    //     validateStatus: () => true,
+    //   }
+    // )
+    const result = await api.getPosts();
     if (result.status === 200) {
       console.log(result.data)
       setPosts(result.data)
@@ -41,13 +42,14 @@ const PostList = () => {
     }
 
     //Gọi API lọc theo slug
-    const result = await axios.get(
-      `https://backend-blog-production-c415.up.railway.app/tag/search?slug=${tagSlug}`,
-      {
-        validateStatus: () => true,
-      }
-    )
-  
+    // const result = await axios.get(
+    //   `https://backend-blog-production-c415.up.railway.app/tag/search?slug=${tagSlug}`,
+    //   {
+    //     validateStatus: () => true,
+    //   }
+    // )
+    const result = await api.filterPostsByTag(tagSlug)
+
     if (result.status === 200) {
       setFilteredPosts(result.data)
       console.log(`Filtered by tag: ${tagSlug}`)
@@ -63,14 +65,15 @@ const PostList = () => {
       return
     }
 
-  //  Gọi API search theo title
-    const result = await axios.get(
-      `https://backend-blog-production-c415.up.railway.app/posts/search?title=${searchTerm}`,
-      {
-        validateStatus: () => true,
-      }
-    )
-    //const result = await api.searchPostsByTitle(searchTerm);
+    //  Gọi API search theo title
+    // const result = await axios.get(
+    //   `https://backend-blog-production-c415.up.railway.app/posts/search?title=${searchTerm}`,
+    //   {
+    //     validateStatus: () => true,
+    //   }
+    // )
+
+    const result = await api.searchPostsByTitle(searchTerm)
     if (result.status === 200) {
       setFilteredPosts(result.data)
       console.log(`Search results for: ${searchTerm}`)

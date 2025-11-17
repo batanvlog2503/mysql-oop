@@ -45,11 +45,11 @@ const Login = () => {
       }
 
       // Gọi API login tới backend
-      const response = await axios.post(
-        "https://backend-blog-production-c415.up.railway.app/api/auth/login",
-        loginData
-      )
-
+      // const response = await axios.post(
+      //   "https://backend-blog-production-c415.up.railway.app/api/auth/login",
+      //   loginData
+      // )
+      const response = await api.login(loginData)
       if (response.status === 200) {
         const token = response.data.token // backend trả về AuthResponse(token)
 
