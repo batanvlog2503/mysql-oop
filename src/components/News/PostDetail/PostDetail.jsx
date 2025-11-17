@@ -5,6 +5,7 @@ import { useParams } from "react-router-dom"
 import { useState, useEffect } from "react"
 import axios from "axios"
 import Comment from "../Comment/Comment"
+import api from "../../../services/apiService"
 const PostDetail = () => {
   const [active, setActive] = useState(false)
   const { id } = useParams()

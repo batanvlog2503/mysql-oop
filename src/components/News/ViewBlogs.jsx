@@ -8,7 +8,7 @@ import PostList from "./PostList/PostList"
 import Tag from "../Home/Tag/Tag"
 import SimilarBlog from "./SimilarBlog/SimilarBlog"
 import Footer from "../Home/Footer/Footer.jsx"
-
+import api from "../../services/apiService"
 const ViewBlogs = () => {
   return (
     <div>
