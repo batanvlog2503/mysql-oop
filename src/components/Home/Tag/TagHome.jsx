@@ -3,6 +3,7 @@ import "../Tag/Tag.css"
 import axios from "axios"
 import { useState, useEffect } from "react"
 import "./TagHome.css"
+import api from "../../../services/apiService"
 const TagHome = () => {
   const [tags, setTags] = useState([])
 
