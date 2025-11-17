@@ -19,7 +19,7 @@ const Img = ({ id, alt, className }) => {
     try {
       const token = localStorage.getItem("jwtToken")
       const result = await axios.get(
-        `http://localhost:8081/post/detail/${id}`,
+        `https://backend-blog-production-c415.up.railway.app/post/detail/${id}`,
         {
           headers: { Authorization: `Bearer ${token}` },
           validateStatus: () => true,

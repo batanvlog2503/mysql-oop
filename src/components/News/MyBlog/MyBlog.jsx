@@ -19,7 +19,7 @@ const MyBlog = () => {
     const token = localStorage.getItem("jwtToken")
     //const username = localStorage.getItem("username");
     console.log(token)
-    const result = await axios.get("http://localhost:8081/post/myblog", {
+    const result = await axios.get("https://backend-blog-production-c415.up.railway.app/post/myblog", {
       validateStatus: () => {
         return true
       },
@@ -48,7 +48,7 @@ const MyBlog = () => {
 
     try {
       const token = localStorage.getItem("jwtToken")
-      await axios.delete(`http://localhost:8081/post/delete/${id}`, {
+      await axios.delete(`https://backend-blog-production-c415.up.railway.app/post/delete/${id}`, {
         headers: {
           "Content-Type": "application/json",
           Authorization: `Bearer ${token}`,

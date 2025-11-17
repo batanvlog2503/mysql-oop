@@ -67,6 +67,7 @@ const WriteBlog = () => {
       navigate("/view-blogs")
     } catch (error) {
       alert(" Post Failed")
+      
       console.error("Error:", error)
     }
   }
