@@ -39,14 +39,14 @@ const PostDetail = () => {
   }
   const loadPostDetails = async () => {
     const token = localStorage.getItem("jwtToken")
-    const result = await axios.get(`https://backend-blog-production-c415.up.railway.app/post/detail/${id}`, {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-      validateStatus: () => {
-        return true
-      },
-    })
+    const result = await axios.get(
+      `https://backend-blog-production-c415.up.railway.app/post/detail/${id}`,
+      {
+        validateStatus: () => {
+          return true
+        },
+      }
+    )
 
     console.log(" Response Post Detail data:", result.data)
     // console.log(" Post title:", result.data.title)
@@ -64,11 +64,14 @@ const PostDetail = () => {
   }
 
   const loadPosts = async () => {
-    const result = await axios.get(`https://backend-blog-production-c415.up.railway.app/post/${id}`, {
-      validateStatus: () => {
-        return true
-      },
-    })
+    const result = await axios.get(
+      `https://backend-blog-production-c415.up.railway.app/post/${id}`,
+      {
+        validateStatus: () => {
+          return true
+        },
+      }
+    )
     if (result.status === 200) {
       setPosts(result.data)
       console.log("Post data load Successfully")
@@ -92,12 +95,16 @@ const PostDetail = () => {
     e.preventDefault()
     try {
       const token = localStorage.getItem("jwtToken")
-      await axios.post(`https://backend-blog-production-c415.up.railway.app/post/${id}/comment`, newComment, {
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
-        },
-      })
+      await axios.post(
+        `https://backend-blog-production-c415.up.railway.app/post/${id}/comment`,
+        newComment,
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      )
 
       alert("Comment added successfully!")
       setNewComment({ content: "" })
