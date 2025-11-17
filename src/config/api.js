@@ -1,7 +1,6 @@
 // API Base URL - Tự động chọn dựa vào môi trường
-export const API_BASE_URL =
-  import.meta.env.VITE_API_BASE_URL || "http://localhost:8081"
-
+export const API_BASE_URL = import.meta.env.VITE_API_BASE_URL
+//  || "http://localhost:8081"
 // API Endpoints
 export const API_ENDPOINTS = {
   // Posts
@@ -26,7 +25,7 @@ export const API_ENDPOINTS = {
   // Comments
   comments: `${API_BASE_URL}/comments`,
   commentById: (id) => `${API_BASE_URL}/comments/${id}`,
-};
+}
 
 // Export để dùng trong code
-export default API_ENDPOINTS;
+export default API_ENDPOINTS

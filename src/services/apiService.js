@@ -90,14 +90,14 @@ export const api = {
 
   // Login
   login: (credentials) =>
-    apiRequest("api/auth/login", {
+    apiRequest("/api/auth/login", {
       method: "POST",
       body: JSON.stringify(credentials),
     }),
 
   // Register
   register: (userData) =>
-    apiRequest("api/auth/register", {
+    apiRequest("/api/auth/register", {
       method: "POST",
       body: JSON.stringify(userData),
     }),
@@ -114,12 +114,10 @@ export const api = {
       method: "DELETE",
     }),
 
-  searchPostsByTitle: (title) =>
-    apiRequest(`/posts/search?title=${title}`),
+  searchPostsByTitle: (title) => apiRequest(`/posts/search?title=${title}`),
 
   // Lọc posts theo tag slug
-  filterPostsByTag: (tagSlug) =>
-    apiRequest(`/tag/search?slug=${tagSlug}`),
+  filterPostsByTag: (tagSlug) => apiRequest(`/tag/search?slug=${tagSlug}`),
 }
 
 export default api
