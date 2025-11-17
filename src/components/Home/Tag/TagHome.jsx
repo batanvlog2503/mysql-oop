@@ -10,7 +10,7 @@ const TagHome = () => {
     loadTags()
   }, [])
   const loadTags = async () => {
-    const result = await axios.get("http://localhost:8081/tags", {
+    const result = await axios.get("https://backend-blog-production-c415.up.railway.app/tags", {
       validateStatus: () => {
         return true
       },

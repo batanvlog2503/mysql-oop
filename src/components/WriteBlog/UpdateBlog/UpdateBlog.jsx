@@ -58,7 +58,7 @@ const UpdateBlog = () => {
     try {
       const token = localStorage.getItem("jwtToken")
       const result = await axios.get(
-        `http://localhost:8081/post/detail/${id}`,
+        `https://backend-blog-production-c415.up.railway.app/post/detail/${id}`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -122,7 +122,7 @@ const UpdateBlog = () => {
     e.preventDefault()
 
     try {
-      const token = localStorage.getItem("token")
+      const token = localStorage.getItem("jwtToken")
 
       // Prepare data - convert tagNameList string to array
       const updateData = {
@@ -133,13 +133,13 @@ const UpdateBlog = () => {
           .filter((tag) => tag !== ""),
       }
 
-      // await axios.put(`http://localhost:8081/post/update/${id}`, updateData, {
-      //   headers: {
-      //     "Content-Type": "application/json",
-      //     Authorization: `Bearer ${token}`,
-      //   },
-      // })
-      const result = await api.updatePost(id, updateData)
+      await axios.put(`https://backend-blog-production-c415.up.railway.app/post/update/${id}`, updateData, {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      })
+      //const result = await api.updatePost(id, updateData)
       if (
         updateData.title !== blogOrigin.title ||
         updateData.content !== blogOrigin.content

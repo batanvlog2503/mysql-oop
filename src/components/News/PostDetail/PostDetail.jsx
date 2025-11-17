@@ -5,7 +5,6 @@ import { useParams } from "react-router-dom"
 import { useState, useEffect } from "react"
 import axios from "axios"
 import Comment from "../Comment/Comment"
-import api from "../../../services/apiService"
 const PostDetail = () => {
   const [active, setActive] = useState(false)
   const { id } = useParams()
@@ -39,8 +38,15 @@ const PostDetail = () => {
     // ví name = "firstName" = > firstName:"Jhon"
   }
   const loadPostDetails = async () => {
-    const token = localStorage.getItem("token")
-    const result = await api.getPostDetailById(id)
+    const token = localStorage.getItem("jwtToken")
+    const result = await axios.get(`https://backend-blog-production-c415.up.railway.app/post/detail/${id}`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+      validateStatus: () => {
+        return true
+      },
+    })
 
     console.log(" Response Post Detail data:", result.data)
     // console.log(" Post title:", result.data.title)
@@ -58,7 +64,11 @@ const PostDetail = () => {
   }
 
   const loadPosts = async () => {
-    const result = await api.getPostById(id);
+    const result = await axios.get(`https://backend-blog-production-c415.up.railway.app/post/${id}`, {
+      validateStatus: () => {
+        return true
+      },
+    })
     if (result.status === 200) {
       setPosts(result.data)
       console.log("Post data load Successfully")
@@ -81,14 +91,14 @@ const PostDetail = () => {
   const saveComment = async (e) => {
     e.preventDefault()
     try {
-      const token = localStorage.getItem("token")
-      // await axios.post(`http://localhost:8081/post/${id}/comment`, newComment, {
-      //   headers: {
-      //     "Content-Type": "application/json",
-      //     Authorization: `Bearer ${token}`,
-      //   },
-      // })
-      const result = await api.createComment(id, newComment);
+      const token = localStorage.getItem("jwtToken")
+      await axios.post(`https://backend-blog-production-c415.up.railway.app/post/${id}/comment`, newComment, {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      })
+
       alert("Comment added successfully!")
       setNewComment({ content: "" })
       //loadComments() // load lại danh sách

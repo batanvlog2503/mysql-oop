@@ -46,7 +46,7 @@ const WriteBlog = () => {
   const saveBlog = async (e) => {
     e.preventDefault()
     try {
-      const token = localStorage.getItem("token")
+      const token = localStorage.getItem("jwtToken")
       const loadBlog = {
         ...blog,
         tagNameList: blog.tagNameList
@@ -54,14 +54,14 @@ const WriteBlog = () => {
           .map((tag) => tag.trim())
           .filter((tag) => tag !== ""),
       }
-      // await axios.post("http://localhost:8081/post/create", loadBlog, {
-      //   headers: {
-      //     "Content-Type": "application/json",
-      //     Authorization: `Bearer ${token}`,
-      //   },
-      // })
-      const result = await api.createPost(loadBlog);
-      console.log(result);
+      await axios.post("https://backend-blog-production-c415.up.railway.app/post/create", loadBlog, {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      })
+      // const result = await api.createPost(loadBlog);
+     // console.log(result);
       console.log(loadBlog)
       alert(" Post Created Successfully")
       navigate("/view-blogs")

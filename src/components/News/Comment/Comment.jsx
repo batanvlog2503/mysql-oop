@@ -12,15 +12,15 @@ const Comment = ({ comment, postId }) => {
     console.log(user.data)
     if (window.confirm("Bạn có chắc muốn xóa bình luận này không?")) {
       try {
-        // await axios.delete(
-        //   `http://localhost:8081/post/${postId}/comments/${commentId}`,
-        //   {
-        //     headers: {
-        //       Authorization: `Bearer ${token}`,
-        //     },
-        //   }
-        // )
-        const result = await api.deleteComment(postId, commentId)
+        await axios.delete(
+          `https://backend-blog-production-c415.up.railway.app/${postId}/comments/${commentId}`,
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        )
+      
         alert("Đã xóa bình luận!")
         window.location.reload() // load lại trang hoặc bạn có thể filter state để không cần reload
       } catch (error) {
