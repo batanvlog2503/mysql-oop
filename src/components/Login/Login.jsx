@@ -5,7 +5,7 @@ import NavbarLogin from "./NavbarLogin"
 import { useState, useEffect } from "react"
 import axios from "axios"
 import { UserContext } from "../UserContext"
-import api from "../../services/apiService"
+
 const Login = () => {
   const navigate = useNavigate()
   const [users, setUsers] = useState({
@@ -45,16 +45,19 @@ const Login = () => {
       }
 
       // Gọi API login tới backend
-      const response = await api.login(loginData);
+      const response = await axios.post(
+        "https://backend-blog-production-c415.up.railway.app/api/auth/login",
+        loginData
+      )
 
       if (response.status === 200) {
-       
+        const token = response.data.token // backend trả về AuthResponse(token)
 
         //  Lưu token vào localStorage để dùng cho các request sau
-        localStorage.setItem("token", response.token)
+        localStorage.setItem("jwtToken", token)
         //localStorage.setItem("username", loginData.username)
-        console.log("JWT Token:", response.token)
-        console.log("Login response:", loginData.data)
+        console.log("JWT Token:", token)
+        console.log("Login response:", response.data)
         // Nếu có context user, set lại user
         setUser({ username: users.username, password: users.password })
         localStorage.setItem("loginUser", JSON.stringify(users))
